@@ -1,0 +1,8 @@
+INSERT INTO public."employees" (
+	"emp_code",
+	"emp_code",
+	"emp_name")
+VALUES (
+	'{{insert_form.formData.emp_code}}',
+	'{{insert_form.formData.emp_code}}',
+	'{{insert_form.formData.emp_name}}');

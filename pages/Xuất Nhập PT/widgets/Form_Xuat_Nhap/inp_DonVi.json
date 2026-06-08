@@ -1,0 +1,58 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "autoFocus": false,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 13,
+  "boxShadow": "none",
+  "defaultText": "{{ \n  Get_Tong_Kho_Phu_Tung.data.find(row => \n    row[\"Mã vật liệu 物料编号\"] == inp_MaVatLieu.text\n  )?.[\"Đơn vị 单位\"] \n}}",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "defaultText"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicTriggerPathList": [],
+  "iconAlign": "left",
+  "inputType": "TEXT",
+  "isDisabled": false,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "1dx3cd6h9u",
+  "label": "Đơn vị单位:",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelStyle": "",
+  "labelTextColor": "#231f20",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 22,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 13,
+  "mobileLeftColumn": 22,
+  "mobileRightColumn": 42,
+  "mobileTopRow": 6,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 8.294921875,
+  "parentId": "ikmw0khyrm",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "resetOnSubmit": true,
+  "responsiveBehavior": "fill",
+  "rightColumn": 42,
+  "showStepArrows": false,
+  "topRow": 6,
+  "type": "INPUT_WIDGET_V2",
+  "version": 2,
+  "widgetId": "ufpueqgii6",
+  "widgetName": "inp_DonVi"
+}

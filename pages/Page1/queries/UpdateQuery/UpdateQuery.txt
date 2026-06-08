@@ -1,0 +1,4 @@
+UPDATE public."employees" SET
+		"emp_code" = '{{update_form.fieldState.emp_code.isVisible ? update_form.formData.emp_code : update_form.sourceData.emp_code}}',
+		"emp_name" = '{{update_form.fieldState.emp_name.isVisible ? update_form.formData.emp_name : update_form.sourceData.emp_name}}'
+WHERE "emp_code" = {{data_table.selectedRow.emp_code}};

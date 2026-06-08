@@ -1,0 +1,63 @@
+{
+  "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 29,
+  "boxShadow": "none",
+  "defaultOptionValue": "GREEN",
+  "dynamicBindingPathList": [
+    {
+      "key": "accentColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "sourceData"
+    }
+  ],
+  "dynamicTriggerPathList": [],
+  "isDisabled": false,
+  "isFilterable": true,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "rrxzwkgt5s",
+  "labelAlignment": "left",
+  "labelPosition": "Top",
+  "labelText": "Nhân Viên人员",
+  "labelTextColor": "#231f20",
+  "labelTextSize": "0.875rem",
+  "labelWidth": 5,
+  "leftColumn": 22,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 29,
+  "mobileLeftColumn": 22,
+  "mobileRightColumn": 42,
+  "mobileTopRow": 22,
+  "needsErrorInfo": false,
+  "optionLabel": "label",
+  "optionValue": "label",
+  "parentColumnSpace": 8.294921875,
+  "parentId": "ikmw0khyrm",
+  "parentRowSpace": 10,
+  "placeholderText": "Select option",
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 42,
+  "serverSideFiltering": false,
+  "sourceData": "{{Get_NhanVien.data.map( (obj) =>{ return  {'label': obj.emp_code, 'value': obj.full_name } })}}",
+  "topRow": 22,
+  "type": "SELECT_WIDGET",
+  "version": 1,
+  "widgetId": "fhve54aiy5",
+  "widgetName": "sel_NhanVien"
+}

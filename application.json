@@ -1,0 +1,58 @@
+{
+  "appIsExample": false,
+  "appLayout": {
+    "type": "FLUID"
+  },
+  "applicationDetail": {
+    "appPositioning": {
+      "type": "FIXED"
+    },
+    "navigationSetting": {},
+    "themeSetting": {
+      "appMaxWidth": "LARGE",
+      "density": 1.0,
+      "sizing": 1.0
+    }
+  },
+  "applicationVersion": 2,
+  "collapseInvisibleWidgets": true,
+  "color": "#F3F1C7",
+  "evaluationVersion": 2,
+  "icon": "joystick",
+  "pages": [
+    {
+      "id": "Page1",
+      "isDefault": true
+    },
+    {
+      "id": "Tổng Kho PT",
+      "isDefault": false
+    },
+    {
+      "id": "Xuất Nhập PT",
+      "isDefault": false
+    },
+    {
+      "id": "Danh Sách NV",
+      "isDefault": false
+    },
+    {
+      "id": "Kiểm Kê PT",
+      "isDefault": false
+    }
+  ],
+  "unpublishedAppLayout": {
+    "type": "FLUID"
+  },
+  "unpublishedApplicationDetail": {
+    "appPositioning": {
+      "type": "FIXED"
+    },
+    "navigationSetting": {},
+    "themeSetting": {
+      "appMaxWidth": "LARGE",
+      "density": 1.0,
+      "sizing": 1.0
+    }
+  }
+}

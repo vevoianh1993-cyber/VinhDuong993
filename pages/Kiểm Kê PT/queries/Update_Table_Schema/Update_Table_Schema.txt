@@ -1,0 +1,3 @@
+ALTER TABLE parts_catalog ADD COLUMN IF NOT EXISTS actual_check_qty NUMERIC DEFAULT 0;
+ALTER TABLE parts_catalog ADD COLUMN IF NOT EXISTS diff_reason TEXT;
+ALTER TABLE parts_catalog ADD COLUMN IF NOT EXISTS check_notes TEXT;

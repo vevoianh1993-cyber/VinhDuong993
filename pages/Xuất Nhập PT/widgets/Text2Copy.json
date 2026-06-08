@@ -1,0 +1,53 @@
+{
+  "animateLoading": true,
+  "backgroundColor": "#eab308",
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 90,
+  "dynamicBindingPathList": [
+    {
+      "key": "truncateButtonColor"
+    },
+    {
+      "key": "fontFamily"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [],
+  "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+  "fontSize": "1.875rem",
+  "fontStyle": "BOLD",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "tfx6ym3jmn",
+  "leftColumn": 0,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 4,
+  "minWidth": 450,
+  "mobileBottomRow": 51,
+  "mobileLeftColumn": 0,
+  "mobileRightColumn": 16,
+  "mobileTopRow": 47,
+  "needsErrorInfo": false,
+  "originalBottomRow": 90,
+  "originalTopRow": 85,
+  "overflow": "NONE",
+  "parentColumnSpace": 14.125,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "fill",
+  "rightColumn": 16,
+  "shouldTruncate": false,
+  "text": "XUẤT KHO",
+  "textAlign": "LEFT",
+  "textColor": "#231F20",
+  "topRow": 85,
+  "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "type": "TEXT_WIDGET",
+  "version": 1,
+  "widgetId": "peec0r1jk7",
+  "widgetName": "Text2Copy"
+}

@@ -1,0 +1,15 @@
+INSERT INTO transactions (sn_code, trans_type, quantity, emp_code, urgency_level, notes, machine_used, trans_time)
+VALUES (
+    '{{inp_MaVatLieu.text}}',
+    'XUAT_KHO',
+    {{inp_SoLuong.text || 0}}, 
+    '{{sel_NhanVien.selectedOptionValue}}',
+    '{{sel_KhanCap.selectedOptionValue}}',
+    '{{inp_GhiChu.text}}',
+    '{{inp_LoaiMay.text}}',
+    NOW()
+);
+
+UPDATE parts_catalog
+SET current_qty = current_qty - {{inp_SoLuong.text || 0}}
+WHERE part_code = '{{inp_MaVatLieu.text}}';

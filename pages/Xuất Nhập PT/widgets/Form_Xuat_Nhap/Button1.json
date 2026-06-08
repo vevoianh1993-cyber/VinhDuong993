@@ -1,0 +1,50 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 35,
+  "boxShadow": "none",
+  "buttonColor": "#eab308",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": true,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "vmp6r85u8u",
+  "leftColumn": 46,
+  "minWidth": 120,
+  "mobileBottomRow": 37,
+  "mobileLeftColumn": 46,
+  "mobileRightColumn": 62,
+  "mobileTopRow": 33,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  (async () => {\n    try {\n      // Bắt buộc phải có Mã vật liệu, Số lượng và Chọn Nhân viên\n      if (!inp_MaVatLieu.text || !inp_SoLuong.text || !sel_NhanVien.selectedOptionValue) {\n        showAlert(\"Vui lòng điền đủ Mã vật liệu, Số lượng và Nhân viên thao tác!\", \"warning\");\n        return;\n      }\n      \n      // Chạy lệnh Xuất\n      await Action_Submit_XuatKho.run();\n      \n      // Thông báo thành công\n      showAlert(\"✅ Xuất kho thành công!\", \"success\");\n      \n      // Cập nhật lại các bảng dữ liệu\n      await Get_LichSu_Xuat.run(); \n      await Get_Tong_Kho_Phu_Tung.run(); \n      \n      // Xóa trắng Form\n      resetWidget(\"Form_Xuat_Nhap\", true); \n      \n    } catch (err) {\n      showAlert(\"❌ Lỗi: \" + err.message, \"error\");\n    }\n  })()\n}}",
+  "parentId": "ikmw0khyrm",
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": true,
+  "responsiveBehavior": "hug",
+  "rightColumn": 62,
+  "text": "Xuất出库",
+  "topRow": 31,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "obfrah1wzh",
+  "widgetName": "Button1"
+}

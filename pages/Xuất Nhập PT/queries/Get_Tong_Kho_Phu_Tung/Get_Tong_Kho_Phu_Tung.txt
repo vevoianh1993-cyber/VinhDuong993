@@ -1,0 +1,62 @@
+SELECT 
+    row_number() OVER (ORDER BY p.part_code) AS "STT 序号",
+    p.part_code AS "Mã vật liệu 物料编号",
+    p.name_vn AS "Tên vật liệu 物料名称",
+    p.unit AS "Đơn vị 单位",
+    
+    -- Tổng SL Đầu kì 
+    (
+        COALESCE((
+            SELECT SUM(CASE WHEN tr.trans_type = 'NHAP_KHO' THEN tr.quantity ELSE 0 END) -
+                   SUM(CASE WHEN tr.trans_type = 'XUAT_KHO' THEN tr.quantity ELSE 0 END)
+            FROM transactions tr 
+            WHERE tr.sn_code = p.part_code 
+            AND tr.trans_time < date_trunc('month', NOW())
+        ), 0)
+        - 
+        COALESCE((
+            SELECT SUM(st.quantity) 
+            FROM scrap_transactions st 
+            WHERE st.item_code = p.part_code 
+            AND st.trans_type = 'XUAT_BAO_PHE'
+            AND st.trans_time < date_trunc('month', NOW())
+        ), 0)
+    ) AS "Tổng SL Đầu kì 期初结存数量",
+
+    -- Tổng SL nhập
+    COALESCE((
+        SELECT SUM(tr.quantity) FROM transactions tr 
+        WHERE tr.sn_code = p.part_code AND tr.trans_type = 'NHAP_KHO'
+        AND tr.trans_time >= date_trunc('month', NOW())
+    ), 0) AS "Tổng SL nhập 入库数量  合计",
+
+    -- Tổng SL xuất
+    (
+        COALESCE((
+            SELECT SUM(tr.quantity) FROM transactions tr 
+            WHERE tr.sn_code = p.part_code AND tr.trans_type = 'XUAT_KHO'
+            AND tr.trans_time >= date_trunc('month', NOW())
+        ), 0)
+        +
+        COALESCE((
+            SELECT SUM(st.quantity) FROM scrap_transactions st 
+            WHERE st.item_code = p.part_code AND st.trans_type = 'XUAT_BAO_PHE'
+            AND st.trans_time >= date_trunc('month', NOW())
+        ), 0)
+    ) AS "Tổng SL xuất 出库数量 合计",
+
+    -- Tổng SL tồn dư
+    p.current_qty AS "Tổng SL tồn dư 结存余量合计",
+
+    -- Vị trí
+    p.storage_area AS "Vị trí 放货位置",
+
+    -- Thao tác cuối cùng
+    COALESCE((
+        SELECT TO_CHAR(MAX(trans_time), 'YYYY-MM-DD HH24:MI:SS')
+        FROM transactions tr
+        WHERE tr.sn_code = p.part_code
+    ), '') AS "Thao tác cuối cùng 上次交易"
+
+FROM parts_catalog p
+ORDER BY p.part_code;

@@ -1,0 +1,32 @@
+{
+  "gitSyncId": "6a2617856c35e1cda1ecf557_7490c974-1524-41ad-8314-d198a0259f80",
+  "unpublishedPage": {
+    "isHidden": false,
+    "layouts": [
+      {
+        "dsl": {
+          "backgroundColor": "none",
+          "bottomRow": 1370,
+          "canExtend": true,
+          "containerStyle": "none",
+          "detachFromLayout": true,
+          "dynamicBindingPathList": [],
+          "leftColumn": 0,
+          "minHeight": 680,
+          "parentColumnSpace": 1,
+          "parentRowSpace": 1,
+          "rightColumn": 1224,
+          "snapColumns": 64,
+          "snapRows": 66,
+          "topRow": 0,
+          "type": "CANVAS_WIDGET",
+          "version": 94,
+          "widgetId": "0",
+          "widgetName": "MainContainer"
+        }
+      }
+    ],
+    "name": "Xuất Nhập PT",
+    "slug": "xuat-nhap-pt"
+  }
+}

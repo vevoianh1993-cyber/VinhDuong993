@@ -1,0 +1,32 @@
+{
+  "gitSyncId": "6a2617856c35e1cda1ecf557_c058f602-1ade-4f82-8c13-0d3dadae58bf",
+  "unpublishedPage": {
+    "isHidden": false,
+    "layouts": [
+      {
+        "dsl": {
+          "backgroundColor": "none",
+          "bottomRow": 670,
+          "canExtend": true,
+          "containerStyle": "none",
+          "detachFromLayout": true,
+          "dynamicBindingPathList": [],
+          "leftColumn": 0,
+          "minHeight": 680,
+          "parentColumnSpace": 1,
+          "parentRowSpace": 1,
+          "rightColumn": 1224,
+          "snapColumns": 64,
+          "snapRows": 66,
+          "topRow": 0,
+          "type": "CANVAS_WIDGET",
+          "version": 94,
+          "widgetId": "0",
+          "widgetName": "MainContainer"
+        }
+      }
+    ],
+    "name": "Tổng Kho PT",
+    "slug": "tong-kho-pt"
+  }
+}
