@@ -1,0 +1,57 @@
+{
+  "allowedFileTypes": [
+    "*"
+  ],
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 5,
+  "boxShadow": "none",
+  "buttonColor": "green",
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onFilesSelected"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onFilesSelected"
+    }
+  ],
+  "dynamicTyping": true,
+  "fileDataType": "Array",
+  "files": [],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "jacbq7nmyg",
+  "label": "Nhập từ Excel导入",
+  "leftColumn": 43,
+  "maxFileSize": "10",
+  "maxNumFiles": 1,
+  "minWidth": 120,
+  "mobileBottomRow": 5,
+  "mobileLeftColumn": 47,
+  "mobileRightColumn": 63,
+  "mobileTopRow": 1,
+  "needsErrorInfo": false,
+  "onFilesSelected": "(async () => {\n    // 1. Kiểm tra file và Form\n    const files = FilePicker_NhapKho.files;\n    if (!files || files.length === 0) return;\n\n    // Kiểm tra đã chọn Nhân viên và Mức độ trên Form chưa\n    if (!sel_NhanVien.selectedOptionValue || !sel_KhanCap.selectedOptionValue) {\n      showAlert(\"❌ Vui lòng chọn Nhân viên và Mức độ (Khẩn cấp) trên Form trước!\", \"warning\");\n      resetWidget('FilePicker_NhapKho', true);\n      return;\n    }\n\n    const excelData = files[0].data;\n    if (!excelData || excelData.length === 0) {\n      showAlert(\"❌ File trống!\", \"error\");\n      resetWidget('FilePicker_NhapKho', true);\n      return;\n    }\n\n    let successCount = 0;\n    let errorCount = 0;\n\n    try {\n      showAlert(\"⏳ Đang nhập kho...\", \"info\");\n\n      // 2. Vòng lặp xử lý từng dòng\n      for (let i = 0; i < excelData.length; i++) {\n        let row = excelData[i];\n\n        // Chỉ kiểm tra Mã vật liệu và Số lượng trong Excel\n        if (!row.ma_vat_lieu || !row.so_luong) {\n          errorCount++;\n          continue; \n        }\n\n        // Đẩy dữ liệu (Lấy Mã NV từ sel_NhanVien và Mức độ từ sel_KhanCap)\n        await Action_Import_Row.run({\n          ma_vat_lieu: String(row.ma_vat_lieu).trim(),\n          ten_vat_lieu: row.ten_vat_lieu || '',\n          don_vi: row.don_vi || '',\n          quy_cach: row.quy_cach || '',\n          vi_tri: row.vi_tri || '',\n          so_luong: Number(row.so_luong),\n          emp_code: sel_NhanVien.selectedOptionValue, \n          urgency_level: sel_KhanCap.selectedOptionValue \n        });\n\n        successCount++;\n      }\n\n      // 3. Thông báo kết quả\n      showAlert(`✅ Nhập thành công ${successCount} dòng!`, \"success\");\n      \n      // 4. Load lại các bảng\n      await Get_LS_Nhap.run();\n      await Get_Inventory_Data.run();\n\t\t\t await \nGet_Bang_Tool.run();\n\n    } catch (err) {\n      showAlert(\"❌ Lỗi: \" + err.message, \"error\");\n    } finally {\n      resetWidget('FilePicker_NhapKho', true);\n    }\n})();",
+  "parentColumnSpace": 8.294921875,
+  "parentId": "03rztqscr8",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "selectedFiles": [],
+  "topRow": 1,
+  "type": "FILE_PICKER_WIDGET_V2",
+  "version": 1,
+  "widgetId": "dy68906oc8",
+  "widgetName": "FilePicker_NhapKho"
+}

@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "6a2617856c35e1cda1ecf557_30dd4144-fe32-4034-ba21-942fb2c972f0",
+  "id": "Xuất Nhập PT_I18n_Utils",
+  "unpublishedCollection": {
+    "name": "I18n_Utils",
+    "pageId": "Xuất Nhập PT",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "messages",
+        "value": "{\n  SUCCESS_IMPORT: {\n    vn: \"Nhập kho thành công!\",\n    cn: \"入库成功!\"\n  },\n  ERR_FILE_REQUIRED: {\n    vn: \"Vui lòng chọn file trước!\",\n    cn: \"请选择文件!\"\n  },\n  ERR_FORM_REQUIRED: {\n    vn: \"Vui lòng chọn Nhân viên & Mức độ khẩn cấp!\",\n    cn: \"请选择员工和紧急程度!\"\n  },\n  ERR_GENERAL: {\n    vn: \"Lỗi hệ thống: \",\n    cn: \"系统错误: \"\n  },\n  RESET_SUCCESS: {\n    vn: \"Đã làm mới dữ liệu!\",\n    cn: \"数据已刷新!\"\n  }\n}"
+      }
+    ]
+  }
+}

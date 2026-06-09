@@ -1,0 +1,26 @@
+-- Bước 1: Cập nhật hoặc thêm mới vật tư gốc
+INSERT INTO parts_catalog (part_code, name_vn, unit, storage_area, actual_check_qty)
+VALUES ({{ this.params.part_code }}, {{ this.params.name_vn }}, {{ this.params.unit }}, {{ this.params.storage_area }}, {{ this.params.quantity }})
+ON CONFLICT (part_code) DO UPDATE 
+SET name_vn = EXCLUDED.name_vn, unit = EXCLUDED.unit, storage_area = EXCLUDED.storage_area, actual_check_qty = EXCLUDED.actual_check_qty;
+
+-- Bước 2: Đảm bảo tồn tại trong Serial Inventory
+INSERT INTO serial_inventory (sn_code, part_code)
+VALUES ({{ this.params.part_code }}, {{ this.params.part_code }})
+ON CONFLICT (sn_code) DO NOTHING;
+
+-- Bước 3: Ghi nhật ký giao dịch
+INSERT INTO transactions (sn_code, trans_type, quantity, emp_code, urgency_level, trans_time)
+VALUES (
+    {{ this.params.part_code }},
+    'NHAP_KHO',
+    {{ this.params.quantity }}, 
+    {{ this.params.emp_code }}, 
+    {{ this.params.urgency_level }}, 
+    NOW()
+);
+
+-- Bước 4: Cập nhật số lượng tồn kho
+UPDATE parts_catalog
+SET current_qty = current_qty + {{ this.params.quantity }}
+WHERE part_code = {{ this.params.part_code }};

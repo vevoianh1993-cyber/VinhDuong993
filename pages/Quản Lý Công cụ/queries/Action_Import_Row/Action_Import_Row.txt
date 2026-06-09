@@ -1,0 +1,29 @@
+-- 1. Lưu vào Danh mục công cụ
+INSERT INTO tools_catalog (
+    tool_code, specifications, unit, storage_area, current_qty, actual_qty
+)
+VALUES (
+    {{ this.params.ma_vat_lieu }}, 
+    {{ this.params.ten_vat_lieu }} || ' ' || {{ this.params.quy_cach }}, 
+    {{ this.params.don_vi }}, 
+    {{ this.params.vi_tri }}, 
+    {{ this.params.so_luong }},
+    {{ this.params.so_luong }}
+)
+ON CONFLICT (tool_code) DO UPDATE 
+SET 
+    current_qty = tools_catalog.current_qty + EXCLUDED.current_qty,
+    actual_qty = tools_catalog.actual_qty + EXCLUDED.current_qty,
+    storage_area = EXCLUDED.storage_area; 
+
+-- 2. Ghi lịch sử (QUAN TRỌNG: Đã thêm emp_code và urgency_level ở đây)
+INSERT INTO tools_transactions (trans_time, trans_type, tool_code, quantity, notes, emp_code, urgency_level)
+VALUES (
+    NOW(), 
+    'IMPORT', 
+    {{ this.params.ma_vat_lieu }}, 
+    {{ this.params.so_luong }}, 
+    'Nhập từ file Excel',
+    {{ this.params.emp_code }},       -- Nhận từ JS
+    {{ this.params.urgency_level }}   -- Nhận từ JS
+);

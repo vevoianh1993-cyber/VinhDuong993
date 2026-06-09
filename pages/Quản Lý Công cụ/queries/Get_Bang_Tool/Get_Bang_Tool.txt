@@ -1,0 +1,22 @@
+SELECT 
+    c.tool_code,
+    c.specifications,
+    c.unit,
+    -- Tính Số lượng Đầu kỳ (Tồn dư - Nhập + Xuất)
+    (c.current_qty 
+     - COALESCE(SUM(CASE WHEN t.trans_type = 'IMPORT' THEN t.quantity ELSE 0 END), 0) 
+     + COALESCE(SUM(CASE WHEN t.trans_type = 'EXPORT' THEN t.quantity ELSE 0 END), 0)
+    ) AS opening_qty,
+    -- Tính tổng Số lượng Nhập
+    COALESCE(SUM(CASE WHEN t.trans_type = 'IMPORT' THEN t.quantity ELSE 0 END), 0) AS total_import,
+    -- Tính tổng Số lượng Xuất
+    COALESCE(SUM(CASE WHEN t.trans_type = 'EXPORT' THEN t.quantity ELSE 0 END), 0) AS total_export,
+    -- Tồn dư hiện tại
+    c.current_qty,
+    c.storage_area,
+    -- Lấy thời gian của thao tác gần nhất
+    MAX(t.trans_time) AS last_trans
+FROM tools_catalog c
+LEFT JOIN tools_transactions t ON c.tool_code = t.tool_code
+GROUP BY c.tool_code, c.specifications, c.unit, c.current_qty, c.storage_area
+ORDER BY c.tool_code ASC;

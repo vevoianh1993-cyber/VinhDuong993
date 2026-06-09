@@ -1,0 +1,1 @@
+SELECT * FROM scrap_management ORDER BY id DESC;

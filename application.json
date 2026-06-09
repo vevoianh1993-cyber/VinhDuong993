@@ -39,6 +39,14 @@
     {
       "id": "Kiểm Kê PT",
       "isDefault": false
+    },
+    {
+      "id": "Quản Lý Công cụ",
+      "isDefault": false
+    },
+    {
+      "id": "Quản Lý Báo Phế",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

@@ -1,0 +1,56 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 35,
+  "boxShadow": "none",
+  "buttonColor": "#eab308",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": true,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": "{{ \n  !inp_MaCongCu.text || \n  !inp_SoLuong.text || \n  !sel_NhanVien.selectedOptionValue || \n  !sel_KhanCap.selectedOptionValue || \n  !inp_MaySuDung.text || \n  !inp_ViTri.text ||\n  !inp_DonVi.text \n}}",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "vmp6r85u8u",
+  "leftColumn": 46,
+  "minWidth": 120,
+  "mobileBottomRow": 37,
+  "mobileLeftColumn": 46,
+  "mobileRightColumn": 62,
+  "mobileTopRow": 33,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  (async () => {\n    // 1. Kiểm tra điều kiện đầu vào (Bao gồm cả Loại máy dùng)\n    if (!inp_MaCongCu.text || !inp_SoLuong.text || !sel_NhanVien.selectedOptionValue || !inp_MaySuDung.text) {\n      showAlert('Vui lòng điền đầy đủ thông tin bắt buộc (kể cả Loại máy dùng)!', 'warning');\n      return; // Dừng chạy tiếp nếu thiếu thông tin\n    }\n\n    try {\n      // 2. Thực thi lệnh Xuất kho\n      await Action_XuatKho.run();\n\n      // 3. Thông báo thành công\n      showAlert('Xuất kho thành công! / 出库成功!', 'success');\n\n      // 4. LÀM MỚI TẤT CẢ CÁC BẢNG LIÊN QUAN (Tuần tự và an toàn)\n      await Get_Bang_Tool.run();         // Load lại bảng danh mục/tồn kho\n      await Get_LS_Xuat.run();           // Load lại bảng lịch sử xuất\n      await Get_Inventory_Data.run();    // Cập nhật ngay số liệu sang Bảng Kiểm Kê\n\n      // 5. Reset lại Form nhập liệu\n      resetWidget('Form_Xuat_Nhap_1', true);\n\n    } catch (err) {\n      // 6. Xử lý lỗi nếu có\n      showAlert('❌ Lỗi: ' + err.message, 'error');\n    }\n  })()\n}}",
+  "parentId": "03rztqscr8",
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": true,
+  "responsiveBehavior": "hug",
+  "rightColumn": 62,
+  "text": "Xuất出库",
+  "topRow": 31,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "7vy0yl7irl",
+  "widgetName": "Button1"
+}

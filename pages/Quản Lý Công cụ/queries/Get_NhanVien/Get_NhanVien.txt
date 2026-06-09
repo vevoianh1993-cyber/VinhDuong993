@@ -1,0 +1,5 @@
+SELECT 
+    emp_code, 
+    emp_name AS full_name 
+FROM public.employees
+ORDER BY emp_code;

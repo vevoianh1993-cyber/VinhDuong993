@@ -12,11 +12,17 @@
     },
     {
       "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
     }
   ],
   "dynamicPropertyPathList": [
     {
       "key": "onClick"
+    },
+    {
+      "key": "isDisabled"
     }
   ],
   "dynamicTriggerPathList": [
@@ -25,7 +31,7 @@
     }
   ],
   "isDefaultClickDisabled": true,
-  "isDisabled": false,
+  "isDisabled": "{{ \n  !inp_MaVatLieu.text || \n  !inp_SoLuong.text || \n  !sel_NhanVien.selectedOptionValue || \n  !sel_KhanCap.selectedOptionValue ||\n  \n !inp_ViTri.text ||\n\n !inp_DonVi.text \n}}",
   "isLoading": false,
   "isVisible": true,
   "key": "vmp6r85u8u",
@@ -36,7 +42,7 @@
   "mobileRightColumn": 62,
   "mobileTopRow": 33,
   "needsErrorInfo": false,
-  "onClick": "{{\n  (async () => {\n    try {\n      // Bắt buộc phải có Mã vật liệu, Số lượng và Chọn Nhân viên\n      if (!inp_MaVatLieu.text || !inp_SoLuong.text || !sel_NhanVien.selectedOptionValue) {\n        showAlert(\"Vui lòng điền đủ Mã vật liệu, Số lượng và Nhân viên thao tác!\", \"warning\");\n        return;\n      }\n      \n      // Chạy lệnh Nhập\n      await Action_Submit_NhapKho.run();\n      \n      // Thông báo thành công\n      showAlert(\"✅ Nhập kho thành công!\", \"success\");\n      \n      // Cập nhật lại các bảng dữ liệu\n      await Get_LichSu_Nhap.run(); \n      await Get_Tong_Kho_Phu_Tung.run(); \n      \n      // Xóa trắng Form\n      resetWidget(\"Form_Xuat_Nhap\", true); \n      \n    } catch (err) {\n      showAlert(\"❌ Lỗi: \" + err.message, \"error\");\n    }\n  })()\n}}",
+  "onClick": "{{\n  (async () => {\n    try {\n      // Bắt buộc phải có Mã vật liệu, Số lượng và Chọn Nhân viên\n      if (!inp_MaVatLieu.text || !inp_SoLuong.text || !sel_NhanVien.selectedOptionValue) {\n        showAlert(\"Vui lòng điền đủ Mã vật liệu, Số lượng và Nhân viên thao tác请填写物料代码、数量和操作员 ID！!\", \"warning\");\n        return;\n      }\n      \n      // Chạy lệnh Nhập\n      await Action_Submit_NhapKho.run();\n      \n      // Thông báo thành công\n      showAlert(\"Nhập kho thành công入库成功!\", \"success\");\n      \n      // Cập nhật lại các bảng dữ liệu\n      await Get_LichSu_Nhap.run(); \n      await Get_Tong_Kho_Phu_Tung.run(); \n      \n      // Xóa trắng Form\n      resetWidget(\"Form_Xuat_Nhap\", true); \n      \n    } catch (err) {\n      showAlert(\"❌ Lỗi: \" + err.message, \"error\");\n    }\n  })()\n}}",
   "parentId": "ikmw0khyrm",
   "placement": "CENTER",
   "recaptchaType": "V3",

@@ -1,0 +1,3 @@
+-- Xóa hết lịch sử và dữ liệu kho
+DELETE FROM tools_transactions;
+DELETE FROM tools_catalog;

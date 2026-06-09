@@ -1,0 +1,61 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 35,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": true,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    },
+    {
+      "key": "isDisabled"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": "{{ \n  !inp_MaCongCu.text || \n  !inp_SoLuong.text || \n  !sel_NhanVien.selectedOptionValue || \n  !sel_KhanCap.selectedOptionValue ||\n  \n !inp_ViTri.text ||\n\n !inp_DonVi.text \n}}",
+  "isLoading": false,
+  "isVisible": true,
+  "key": "vmp6r85u8u",
+  "leftColumn": 24,
+  "minWidth": 120,
+  "mobileBottomRow": 37,
+  "mobileLeftColumn": 46,
+  "mobileRightColumn": 62,
+  "mobileTopRow": 33,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  (async () => {\n    // 1. Kiểm tra điều kiện đầu vào\n    if (!inp_MaCongCu.text || !inp_SoLuong.text || !sel_NhanVien.selectedOptionValue) {\n      showAlert('Vui lòng điền đầy đủ Mã vật liệu, Số lượng và Nhân viên!', 'warning');\n      return; // Dừng lại nếu thiếu thông tin\n    }\n\n    try {\n      // 2. Thực thi lệnh Nhập kho\n      await Action_NhapKho.run();\n\n      // 3. Thông báo thành công\n      showAlert('Nhập kho thành công! / 入库成功!', 'success');\n\n      // 4. LÀM MỚI TẤT CẢ CÁC BẢNG LIÊN QUAN\n      await Get_Bang_Tool.run();         // Load lại bảng danh mục công cụ\n      await Get_LS_Nhap.run();           // Load lại lịch sử nhập\n      await Get_Inventory_Data.run();    // Lệnh mới thêm: Load lại Bảng kiểm kê\n\n      // 5. Reset lại Form nhập liệu\n      resetWidget('Form_Xuat_Nhap_1', true);\n\n    } catch (err) {\n      // 6. Xử lý nếu có lỗi xảy ra\n      showAlert('Lỗi: ' + err.message, 'error');\n    }\n  })()\n}}",
+  "originalBottomRow": 35,
+  "originalTopRow": 31,
+  "parentId": "03rztqscr8",
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": true,
+  "responsiveBehavior": "hug",
+  "rightColumn": 40,
+  "text": "Nhập入库",
+  "topRow": 31,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "z6ioe2rs5k",
+  "widgetName": "Button1Copy"
+}

@@ -1,0 +1,2 @@
+INSERT INTO transactions (part_code, transaction_type, qty, transaction_date)
+VALUES ({{ this.params.part_code }}, 'IMPORT', {{ this.params.quantity }}, NOW());

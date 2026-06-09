@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 60,
+  "bottomRow": 67,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "cachedTableData": {},
   "canFreezeColumn": true,
@@ -48,7 +48,7 @@
     "xn__Ghi_Ch__c2a4893r9sqb",
     "EditActions1"
   ],
-  "columnUpdatedAt": 1780887198777,
+  "columnUpdatedAt": 1780890986869,
   "columnWidthMap": {
     "xn__STT__th1g547c": 72
   },
@@ -148,13 +148,13 @@
       "key": "primaryColumns.customColumn1.textColor"
     },
     {
+      "key": "primaryColumns.xn__Kim_K_Thc_T__seb8308hoba35c8563fz6pbstag24mg40a3q8l.onSubmit"
+    },
+    {
       "key": "primaryColumns.EditActions1.isSaveDisabled"
     },
     {
       "key": "primaryColumns.EditActions1.isDiscardDisabled"
-    },
-    {
-      "key": "primaryColumns.xn__Kim_K_Thc_T__seb8308hoba35c8563fz6pbstag24mg40a3q8l.onSubmit"
     },
     {
       "key": "primaryColumns.xn__Nguyn_Nhn__b5a5gq678khsja7t0ag4d.onSubmit"
@@ -195,9 +195,11 @@
   "mobileRightColumn": 34,
   "mobileTopRow": 1,
   "needsErrorInfo": false,
+  "originalBottomRow": 67,
+  "originalTopRow": 8,
   "parentId": "0",
   "parentRowSpace": 10,
-  "primaryColumnId": "xn__M_vt_liu__l2a2005fbjaj142f8qlb0sr12z",
+  "primaryColumnId": "xn__STT__th1g547c",
   "primaryColumns": {
     "EditActions1": {
       "alias": "EditActions1",
@@ -244,7 +246,7 @@
       "allowCellWrapping": false,
       "allowSameOptionsInNewRow": true,
       "buttonStyle": "rgb(3, 179, 101)",
-      "cellBackground": "{{(() => { const tableData = KiemKe.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  (() => {\n    const actual = currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"];\n    const system = currentRow[\"Số Dư Cuối Tháng 本月结存\"];\n    const diff = actual - system;\n\n    // 1. Đỏ: Không tìm thấy (Số lượng thực tế bằng 0)\n    if (actual === 0) return \"#FF0000\"; \n    \n    // 2. Xanh: Khớp hoàn toàn\n    if (diff === 0) return \"#008000\"; \n    \n    // 3. Vàng: Có chênh lệch (Lệch thừa hoặc thiếu)\n    return \"#FFFF00\"; \n  })()\n)) : \n  (() => {\n    const actual = currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"];\n    const system = currentRow[\"Số Dư Cuối Tháng 本月结存\"];\n    const diff = actual - system;\n\n    // 1. Đỏ: Không tìm thấy (Số lượng thực tế bằng 0)\n    if (actual === 0) return \"#FF0000\"; \n    \n    // 2. Xanh: Khớp hoàn toàn\n    if (diff === 0) return \"#008000\"; \n    \n    // 3. Vàng: Có chênh lệch (Lệch thừa hoặc thiếu)\n    return \"#FFFF00\"; \n  })()\n })()}}",
+      "cellBackground": "{{(() => { const tableData = KiemKe.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] === 0 ? \"#dcfce7\" : // Xanh lá nhạt\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] < 0 ? \"#fee2e2\" : // Đỏ nhạt\n  \"#ffedd5\" // Cam nhạt\n)) : \n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] === 0 ? \"#dcfce7\" : // Xanh lá nhạt\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] < 0 ? \"#fee2e2\" : // Đỏ nhạt\n  \"#ffedd5\" // Cam nhạt\n })()}}",
       "columnType": "text",
       "computedValue": "{{(() => { const tableData = KiemKe.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => ( currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"] - currentRow[\"Số Dư Cuối Tháng 本月结存\"] )) :  currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"] - currentRow[\"Số Dư Cuối Tháng 本月结存\"]  })()}}",
       "currencyCode": "USD",
@@ -299,7 +301,7 @@
       "isVisible": true,
       "label": "Ghi Chú 备注",
       "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    // 1. Chạy Query lưu dữ liệu\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. Chạy Query lấy lại dữ liệu mới (ÉP BẢNG TỰ LOAD LẠI DỮ LIỆU)\n    // Chính bước này sẽ làm bảng refresh và ẩn nút Save\n    await Get_Bang_Kiem_Ke.run();\n    \n    // 3. Thông báo\n    showAlert(\"✅ Đã lưu và cập nhật dòng!\", \"success\");\n  })()\n}}",
+      "onSubmit": "{{\n  (async () => {\n    // 1. Lưu dữ liệu (Anh đã làm thành công bước này)\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. TỰ ĐỘNG LÀM MỚI BẢNG (Đây là bước làm ẩn nút Save)\n    await Get_Bang_Kiem_Ke.run();\n    \n    showAlert(\"✅ Đã lưu và làm mới dữ liệu!\", \"success\");\n  })()\n}}",
       "originalId": "Ghi Chú 备注",
       "sticky": "",
       "textColor": "",
@@ -348,7 +350,7 @@
       "allowCellWrapping": false,
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
-      "columnType": "number",
+      "columnType": "text",
       "computedValue": "{{(() => { const tableData = Table1.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"])) : Kiểm Kê Thực Tế 本月实际盘点 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
@@ -368,7 +370,7 @@
       "isVisible": true,
       "label": "Kiểm Kê Thực Tế 本月实际盘点",
       "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    // 1. Lưu ngay vào Database\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. Load lại dữ liệu để cập nhật cột \"Chênh Lệch\" và dữ liệu mới\n    await Get_Bang_Kiem_Ke.run();\n    \n    // Không cần dùng showAlert ở đây để tránh hiện thông báo liên tục khi nhập nhanh\n  })()\n}}",
+      "onSubmit": "{{\n  (async () => {\n    // 1. Lưu dữ liệu (Anh đã làm thành công bước này)\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. TỰ ĐỘNG LÀM MỚI BẢNG (Đây là bước làm ẩn nút Save)\n    await Get_Bang_Kiem_Ke.run();\n    \n    showAlert(\"✅ Đã lưu và làm mới dữ liệu!\", \"success\");\n  })()\n}}",
       "originalId": "Kiểm Kê Thực Tế 本月实际盘点",
       "sticky": "",
       "textColor": "",
@@ -437,7 +439,7 @@
       "isVisible": true,
       "label": "Nguyên Nhân 差异原因",
       "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    // 1. Chạy Query lưu dữ liệu\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. Chạy Query lấy lại dữ liệu mới (ÉP BẢNG TỰ LOAD LẠI DỮ LIỆU)\n    // Chính bước này sẽ làm bảng refresh và ẩn nút Save\n    await Get_Bang_Kiem_Ke.run();\n    \n    // 3. Thông báo\n    showAlert(\"✅ Đã lưu và cập nhật dòng!\", \"success\");\n  })()\n}}",
+      "onSubmit": "{{\n  (async () => {\n    // 1. Lưu dữ liệu (Anh đã làm thành công bước này)\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. TỰ ĐỘNG LÀM MỚI BẢNG (Đây là bước làm ẩn nút Save)\n    await Get_Bang_Kiem_Ke.run();\n    \n    showAlert(\"✅ Đã lưu và làm mới dữ liệu!\", \"success\");\n  })()\n}}",
       "originalId": "Nguyên Nhân 差异原因",
       "sticky": "",
       "textColor": "",
@@ -727,7 +729,7 @@
   "showInlineEditingOptionDropdown": true,
   "tableData": "{{Get_Bang_Kiem_Ke.data}}",
   "textSize": "0.875rem",
-  "topRow": 1,
+  "topRow": 8,
   "totalRecordsCount": 0,
   "type": "TABLE_WIDGET_V2",
   "version": 2,

@@ -1,0 +1,9 @@
+INSERT INTO scrap_management (
+    workshop, tool_code, tool_name, unit, quantity, 
+    requester, material_type, usage_location, scrap_reason, approver
+) VALUES (
+    {{ this.params.xuong }}, {{ this.params.ma }}, {{ this.params.ten }}, 
+    {{ this.params.don_vi }}, {{ this.params.so_luong }}, {{ this.params.nguoi_dat }}, 
+    {{ this.params.loai }}, {{ this.params.vi_tri }}, {{ this.params.nguyen_nhan }}, 
+    {{ this.params.nguoi_duyet }}
+);

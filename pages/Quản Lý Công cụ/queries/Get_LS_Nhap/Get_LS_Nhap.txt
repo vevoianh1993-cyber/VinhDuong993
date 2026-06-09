@@ -1,0 +1,14 @@
+SELECT 
+    trans_time AS "Thời gian 时间",
+    tool_code AS "Mã vật liệu 物料编号",
+    (SELECT specifications FROM tools_catalog WHERE tool_code = tools_transactions.tool_code) AS "Tên vật liệu 物料名称",
+    (SELECT specifications FROM tools_catalog WHERE tool_code = tools_transactions.tool_code) AS "Quy cách 规格型号",
+    quantity AS "Số lượng 数量",
+    (SELECT unit FROM tools_catalog WHERE tool_code = tools_transactions.tool_code) AS "Đơn vị 单位",
+    emp_code AS "Mã nhân viên 员工代码",
+    (SELECT current_qty FROM tools_catalog WHERE tool_code = tools_transactions.tool_code) AS "Số lượng hiện tại 剩余数量",
+    urgency_level AS "Mức độ khẩn cấp 紧急程度",
+    notes AS "Ghi chú 备注"
+FROM tools_transactions 
+WHERE trans_type = 'IMPORT'
+ORDER BY trans_time DESC;

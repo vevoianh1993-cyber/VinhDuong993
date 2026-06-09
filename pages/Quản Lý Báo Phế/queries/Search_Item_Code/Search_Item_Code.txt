@@ -1,0 +1,19 @@
+-- Tìm trong Kho Công cụ
+SELECT 
+    tool_code AS ma_vat_lieu, 
+    specifications AS ten_vat_lieu, 
+    unit AS don_vi 
+FROM tools_catalog 
+WHERE tool_code = {{ inp_BP_Ma.text }}
+
+UNION ALL
+
+-- Tìm trong Kho Phụ tùng
+SELECT 
+    part_code AS ma_vat_lieu, 
+    (COALESCE(name_vn, '') || ' ' || COALESCE(specifications, '')) AS ten_vat_lieu, 
+    unit AS don_vi 
+FROM parts_catalog 
+WHERE part_code = {{ inp_BP_Ma.text }}
+
+LIMIT 1;

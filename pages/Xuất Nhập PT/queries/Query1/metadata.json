@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "6a2617856c35e1cda1ecf557_2ad1c254-2cba-458b-8649-2417e86b1831",
+  "gitSyncId": "6a2617856c35e1cda1ecf557_7cd55333-5966-4e9c-b5ae-14e12134ac8b",
   "id": "Xuất Nhập PT_Query1",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT * FROM public.employees LIMIT 1;",
+      "body": "INSERT INTO scrap_transactions (trans_time, trans_type, item_code, item_type, quantity, notes, emp_code)\nVALUES (NOW(), 'EXPORT', 'TEST_CODE', 'TOOL', 1, 'Test kết nối', 'SYSTEM');",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

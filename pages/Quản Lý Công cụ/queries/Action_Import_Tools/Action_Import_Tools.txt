@@ -1,0 +1,26 @@
+-- Bước 1: Cập nhật hoặc thêm mới danh mục Công cụ
+INSERT INTO tools_catalog (tool_code, specifications, unit, storage_area, current_qty)
+VALUES (
+    {{ this.params.tool_code }}, 
+    {{ this.params.specifications }}, 
+    {{ this.params.unit }}, 
+    {{ this.params.storage_area }}, 
+    {{ this.params.quantity }}
+)
+ON CONFLICT (tool_code) DO UPDATE 
+SET 
+    specifications = EXCLUDED.specifications,
+    unit = EXCLUDED.unit,
+    storage_area = EXCLUDED.storage_area,
+    current_qty = tools_catalog.current_qty + EXCLUDED.current_qty;
+
+-- Bước 2: Ghi nhật ký giao dịch
+INSERT INTO tools_transactions (tool_code, trans_type, quantity, emp_code, urgency_level, trans_time)
+VALUES (
+    {{ this.params.tool_code }},
+    'IMPORT',
+    {{ this.params.quantity }}, 
+    {{ this.params.emp_code }}, 
+    {{ this.params.urgency_level }}, 
+    NOW()
+);

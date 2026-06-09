@@ -1,0 +1,21 @@
+SELECT 
+    c.tool_code AS "Mã vật liệu / 物料编码",
+    c.specifications AS "Tên Vật Liệu / 物料名称",
+    c.specifications AS "Quy Cách / 规格",
+    c.unit AS "Đơn Vị / 单位",
+    c.storage_area AS "Khu vực / 存放区域",
+    (c.current_qty - 
+     COALESCE(SUM(CASE WHEN t.trans_type = 'IMPORT' AND t.trans_time >= date_trunc('month', CURRENT_DATE) THEN t.quantity ELSE 0 END), 0) + 
+     COALESCE(SUM(CASE WHEN t.trans_type = 'EXPORT' AND t.trans_time >= date_trunc('month', CURRENT_DATE) THEN t.quantity ELSE 0 END), 0)
+    ) AS "Số Dư Tháng Trước / 上月结存",
+    COALESCE(SUM(CASE WHEN t.trans_type = 'IMPORT' AND t.trans_time >= date_trunc('month', CURRENT_DATE) THEN t.quantity ELSE 0 END), 0) AS "Nhập tháng này / 本月入库",
+    COALESCE(SUM(CASE WHEN t.trans_type = 'EXPORT' AND t.trans_time >= date_trunc('month', CURRENT_DATE) THEN t.quantity ELSE 0 END), 0) AS "Xuất tháng này / 本月出库",
+    0 AS "Trả kho tháng này / 本月退回仓库",
+    c.current_qty AS "Số Dư Cuối Tháng / 本月结存",
+    COALESCE(c.actual_qty, 0) AS "Kiểm Kê Thực Tế / 本月实际盘点",
+    (COALESCE(c.actual_qty, 0) - c.current_qty) AS "Chênh Lệch Kiểm Kê / 盘点差异",
+    COALESCE(c.diff_reason, '') AS "Nguyên Nhân / 差异原因",
+    COALESCE(c.check_notes, '') AS "Ghi Chú / 备注"
+FROM tools_catalog c
+LEFT JOIN tools_transactions t ON c.tool_code = t.tool_code
+GROUP BY c.tool_code, c.specifications, c.unit, c.storage_area, c.current_qty, c.actual_qty, c.diff_reason, c.check_notes;

@@ -1,0 +1,8 @@
+-- 1. Xóa hết các giao dịch (nơi chứa khóa ngoại cuối cùng)
+DELETE FROM transactions;
+
+-- 2. Xóa hết tồn kho serial
+DELETE FROM serial_inventory;
+
+-- 3. Xóa danh mục linh kiện gốc
+DELETE FROM parts_catalog;

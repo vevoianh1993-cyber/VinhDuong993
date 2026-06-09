@@ -1,0 +1,17 @@
+-- Bước 1: Ghi vào bảng lịch sử giao dịch XUẤT (Có lưu thêm vị trí lò/máy sử dụng)
+INSERT INTO tools_transactions (tool_code, trans_type, quantity, emp_code, urgency_level, machine_id, notes, trans_time)
+VALUES (
+    {{inp_MaCongCu.text}}, 
+    'EXPORT', 
+    {{inp_SoLuong.text}}, 
+    {{sel_NhanVien.selectedOptionValue}}, 
+    {{sel_KhanCap.selectedOptionValue}}, 
+    {{inp_MaySuDung.text}},
+    {{inp_GhiChu.text}}, 
+    NOW()
+);
+
+-- Bước 2: Trừ đi số lượng trong bảng danh mục tổng
+UPDATE tools_catalog 
+SET current_qty = current_qty - {{inp_SoLuong.text}}
+WHERE tool_code = {{inp_MaCongCu.text}};

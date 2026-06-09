@@ -1,0 +1,3 @@
+ALTER TABLE tools_transactions 
+ADD CONSTRAINT fk_transactions_to_catalog 
+FOREIGN KEY (tool_code) REFERENCES tools_catalog(specifications);

@@ -1,0 +1,6 @@
+UPDATE tools_catalog 
+SET 
+    actual_qty = {{ Kiem_Ke_Cong_Cu.updatedRow["Kiểm Kê Thực Tế / 本月实际盘点"] || 0 }}, -- Chỉ cập nhật cột kiểm kê
+    diff_reason = '{{ Kiem_Ke_Cong_Cu.updatedRow["Nguyên Nhân / 差异原因"] }}',
+    check_notes = '{{ Kiem_Ke_Cong_Cu.updatedRow["Ghi Chú / 备注"] }}'
+WHERE tool_code = '{{ Kiem_Ke_Cong_Cu.updatedRow["Mã vật liệu / 物料编码"] }}';
