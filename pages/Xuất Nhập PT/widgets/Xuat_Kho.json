@@ -33,17 +33,17 @@
   },
   "columnOrder": [
     "xn__STT__th1g547c",
+    "xn__Thi_gian__6p7dn925emmue",
+    "xn__Tn_vt_liu__m7a5452g1ja1796de94bo31bb00a",
     "xn__Loi_my_dng__o7a92ay877aluth3wat080cvwpb",
     "xn__M_vt_liu__l2a2005fbjax712duu1b5jaz01pgb6b7j09aua",
-    "xn__Tn_vt_liu__m7a5452g1ja1796de94bo31bb00a",
     "xn__Quy_cch__dza7183s4hi9i6cld0f",
-    "xn__Thi_gian__6p7dn925emmue",
     "xn__M_nhn_vin__64ai3hq680lydraz38at06g",
     "xn__S_lng_xut__wzc5700gdqahiz021ekesbonya170p",
     "xn__Mc__khn_cp__2ob6559grba43c2h9020h7vffl2l28m",
     "xn__Ghi_ch__c2a4893r9sqb"
   ],
-  "columnUpdatedAt": 1780882676809,
+  "columnUpdatedAt": 1781078294776,
   "columnWidthMap": {
     "xn__STT__th1g547c": 60
   },
@@ -69,6 +69,12 @@
       "key": "boxShadow"
     },
     {
+      "key": "primaryColumns.xn__Thi_gian__6p7dn925emmue.computedValue"
+    },
+    {
+      "key": "primaryColumns.xn__Tn_vt_liu__m7a5452g1ja1796de94bo31bb00a.computedValue"
+    },
+    {
       "key": "primaryColumns.xn__STT__th1g547c.computedValue"
     },
     {
@@ -78,13 +84,7 @@
       "key": "primaryColumns.xn__M_vt_liu__l2a2005fbjax712duu1b5jaz01pgb6b7j09aua.computedValue"
     },
     {
-      "key": "primaryColumns.xn__Tn_vt_liu__m7a5452g1ja1796de94bo31bb00a.computedValue"
-    },
-    {
       "key": "primaryColumns.xn__Quy_cch__dza7183s4hi9i6cld0f.computedValue"
-    },
-    {
-      "key": "primaryColumns.xn__Thi_gian__6p7dn925emmue.computedValue"
     },
     {
       "key": "primaryColumns.xn__M_nhn_vin__64ai3hq680lydraz38at06g.computedValue"
@@ -126,8 +126,8 @@
   "mobileRightColumn": 34,
   "mobileTopRow": 85,
   "needsErrorInfo": false,
-  "originalBottomRow": 147,
-  "originalTopRow": 99,
+  "originalBottomRow": 143,
+  "originalTopRow": 95,
   "parentId": "0",
   "parentRowSpace": 10,
   "primaryColumns": {
@@ -137,7 +137,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Ghi chú 备注\"])) : Ghi chú 备注 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Ghi chú 备注\"])) : Ghi chú 备注 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -171,7 +171,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Loại máy dùng 使用位置\"])) : Loại máy dùng 使用位置 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Loại máy dùng 使用位置\"])) : Loại máy dùng 使用位置 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -205,7 +205,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Mã nhân viên 员工代码\"])) : Mã nhân viên 员工代码 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Mã nhân viên 员工代码\"])) : Mã nhân viên 员工代码 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -239,7 +239,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Mã vật liệu 物料编号（新）\"])) : Mã vật liệu 物料编号（新） })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Mã vật liệu 物料编号（新）\"])) : Mã vật liệu 物料编号（新） })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -273,7 +273,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Mức độ khẩn cấp 紧急程度\"])) : Mức độ khẩn cấp 紧急程度 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Mức độ khẩn cấp 紧急程度\"])) : Mức độ khẩn cấp 紧急程度 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -307,7 +307,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Quy cách 规格型号\"])) : Quy cách 规格型号 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Quy cách 规格型号\"])) : Quy cách 规格型号 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -323,7 +323,7 @@
       "isDiscardVisible": true,
       "isEditable": false,
       "isSaveVisible": true,
-      "isVisible": false,
+      "isVisible": true,
       "label": "Quy cách 规格型号",
       "notation": "standard",
       "originalId": "Quy cách 规格型号",
@@ -341,7 +341,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "number",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"STT 序号\"])) : STT 序号 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"STT 序号\"])) : STT 序号 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -375,7 +375,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "number",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Số lượng xuất 出库数量\"])) : Số lượng xuất 出库数量 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Số lượng xuất 出库数量\"])) : Số lượng xuất 出库数量 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -409,7 +409,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Thời gian 时间\"])) : Thời gian 时间 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Thời gian 时间\"])) : Thời gian 时间 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -417,7 +417,7 @@
       "fontStyle": "",
       "horizontalAlignment": "LEFT",
       "id": "xn__Thi_gian__6p7dn925emmue",
-      "index": 5,
+      "index": 0,
       "isCellEditable": false,
       "isCellVisible": true,
       "isDerived": false,
@@ -443,7 +443,7 @@
       "allowSameOptionsInNewRow": true,
       "cellBackground": "",
       "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Table2.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Tên vật liệu 物料名称\"])) : Tên vật liệu 物料名称 })()}}",
+      "computedValue": "{{(() => { const tableData = Xuat_Kho.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Tên vật liệu 物料名称\"])) : Tên vật liệu 物料名称 })()}}",
       "currencyCode": "USD",
       "decimals": 0,
       "enableFilter": true,
@@ -451,7 +451,7 @@
       "fontStyle": "",
       "horizontalAlignment": "LEFT",
       "id": "xn__Tn_vt_liu__m7a5452g1ja1796de94bo31bb00a",
-      "index": 3,
+      "index": 2,
       "isCellEditable": false,
       "isCellVisible": true,
       "isDerived": false,
@@ -476,7 +476,7 @@
   "responsiveBehavior": "fill",
   "rightColumn": 64,
   "searchKey": "",
-  "tableData": "{{Get_LichSu_Xuat.data}}",
+  "tableData": "{{Get_LichSu_Xuat_V2.data}}",
   "textSize": "0.875rem",
   "topRow": 95,
   "totalRecordsCount": 0,

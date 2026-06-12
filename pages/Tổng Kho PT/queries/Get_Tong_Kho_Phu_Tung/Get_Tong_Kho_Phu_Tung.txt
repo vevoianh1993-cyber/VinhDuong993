@@ -4,11 +4,11 @@ SELECT
     p.name_vn AS "Tên vật liệu 物料名称",
     p.unit AS "Đơn vị 单位",
     
-    -- Tổng SL Đầu kì 
+    -- Tổng SL Đầu kì (Giữ nguyên logic cũ của bạn)
     (
         COALESCE((
-            SELECT SUM(CASE WHEN tr.trans_type = 'NHAP_KHO' THEN tr.quantity ELSE 0 END) -
-                   SUM(CASE WHEN tr.trans_type = 'XUAT_KHO' THEN tr.quantity ELSE 0 END)
+            SELECT SUM(CASE WHEN tr.trans_type IN ('NHAP_KHO', 'NHAP') THEN tr.quantity ELSE 0 END) -
+                       SUM(CASE WHEN tr.trans_type IN ('XUAT_KHO', 'XUAT') THEN tr.quantity ELSE 0 END)
             FROM transactions tr 
             WHERE tr.sn_code = p.part_code 
             AND tr.trans_time < date_trunc('month', NOW())
@@ -18,7 +18,7 @@ SELECT
             SELECT SUM(st.quantity) 
             FROM scrap_transactions st 
             WHERE st.item_code = p.part_code 
-            AND st.trans_type = 'XUAT_BAO_PHE'
+            AND st.trans_type IN ('XUAT_BAO_PHE', 'NHAP_PHE')
             AND st.trans_time < date_trunc('month', NOW())
         ), 0)
     ) AS "Tổng SL Đầu kì 期初结存数量",
@@ -26,24 +26,16 @@ SELECT
     -- Tổng SL nhập
     COALESCE((
         SELECT SUM(tr.quantity) FROM transactions tr 
-        WHERE tr.sn_code = p.part_code AND tr.trans_type = 'NHAP_KHO'
+        WHERE tr.sn_code = p.part_code AND tr.trans_type IN ('NHAP_KHO', 'NHAP')
         AND tr.trans_time >= date_trunc('month', NOW())
     ), 0) AS "Tổng SL nhập 入库数量  合计",
 
-    -- Tổng SL xuất
-    (
-        COALESCE((
-            SELECT SUM(tr.quantity) FROM transactions tr 
-            WHERE tr.sn_code = p.part_code AND tr.trans_type = 'XUAT_KHO'
-            AND tr.trans_time >= date_trunc('month', NOW())
-        ), 0)
-        +
-        COALESCE((
-            SELECT SUM(st.quantity) FROM scrap_transactions st 
-            WHERE st.item_code = p.part_code AND st.trans_type = 'XUAT_BAO_PHE'
-            AND st.trans_time >= date_trunc('month', NOW())
-        ), 0)
-    ) AS "Tổng SL xuất 出库数量 合计",
+    -- Tổng SL xuất (ĐÃ XÓA BỎ CỘNG DỒN SCRAP_TRANSACTIONS ĐỂ TRÁNH TRÙNG LẶP)
+    COALESCE((
+        SELECT SUM(tr.quantity) FROM transactions tr 
+        WHERE tr.sn_code = p.part_code AND tr.trans_type IN ('XUAT_KHO', 'XUAT')
+        AND tr.trans_time >= date_trunc('month', NOW())
+    ), 0) AS "Tổng SL xuất 出库数量 合计",
 
     -- Tổng SL tồn dư
     p.current_qty AS "Tổng SL tồn dư 结存余量合计",

@@ -1,2 +1,0 @@
-INSERT INTO scrap_transactions (trans_time, trans_type, item_code, item_type, quantity, notes, emp_code)
-VALUES (NOW(), 'EXPORT', 'TEST_CODE', 'TOOL', 1, 'Test kết nối', 'SYSTEM');

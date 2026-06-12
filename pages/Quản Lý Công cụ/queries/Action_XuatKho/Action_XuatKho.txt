@@ -1,17 +1,30 @@
--- Bước 1: Ghi vào bảng lịch sử giao dịch XUẤT (Có lưu thêm vị trí lò/máy sử dụng)
+BEGIN;
+
+-- 1. Thử ghi Log (Nếu sai khóa ngoại, nó sẽ báo lỗi ngay tại đây)
 INSERT INTO tools_transactions (tool_code, trans_type, quantity, emp_code, urgency_level, machine_id, notes, trans_time)
 VALUES (
-    {{inp_MaCongCu.text}}, 
+    {{ this.params.toolCode }}, 
     'EXPORT', 
-    {{inp_SoLuong.text}}, 
-    {{sel_NhanVien.selectedOptionValue}}, 
-    {{sel_KhanCap.selectedOptionValue}}, 
-    {{inp_MaySuDung.text}},
-    {{inp_GhiChu.text}}, 
+    {{ this.params.qty }}, 
+    {{ this.params.empCode }}, 
+    {{ this.params.urgency }}, 
+    {{ this.params.machineId }},
+    {{ this.params.notes }}, 
     NOW()
 );
 
--- Bước 2: Trừ đi số lượng trong bảng danh mục tổng
+-- 2. Thực hiện trừ kho
 UPDATE tools_catalog 
-SET current_qty = current_qty - {{inp_SoLuong.text}}
-WHERE tool_code = {{inp_MaCongCu.text}};
+SET current_qty = current_qty - {{ this.params.qty }}
+WHERE tool_code = {{ this.params.toolCode }}
+  AND current_qty >= {{ this.params.qty }};
+
+-- 3. Kiểm tra: Nếu UPDATE không thay đổi dòng nào (tức là tồn kho không đủ hoặc không tìm thấy mã), RAISE ERROR để hủy toàn bộ giao dịch
+DO $$
+BEGIN
+    IF NOT FOUND THEN
+        RAISE EXCEPTION 'Lỗi: Tồn kho không đủ hoặc không tìm thấy mã vật tư!';
+    END IF;
+END $$;
+
+COMMIT;

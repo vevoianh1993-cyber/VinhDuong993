@@ -17,12 +17,15 @@
   "dynamicHeight": "FIXED",
   "dynamicPropertyPathList": [
     {
-      "key": "onTextChanged"
+      "key": "onBlur"
     }
   ],
   "dynamicTriggerPathList": [
     {
       "key": "onTextChanged"
+    },
+    {
+      "key": "onBlur"
     }
   ],
   "iconAlign": "left",
@@ -48,9 +51,10 @@
   "mobileRightColumn": 21,
   "mobileTopRow": 6,
   "needsErrorInfo": false,
+  "onBlur": "{{ Search_Tool_By_Code.run() }}",
   "onTextChanged": "",
-  "originalBottomRow": 13,
-  "originalTopRow": 6,
+  "originalBottomRow": 44,
+  "originalTopRow": 37,
   "parentColumnSpace": 8.294921875,
   "parentId": "03rztqscr8",
   "parentRowSpace": 10,

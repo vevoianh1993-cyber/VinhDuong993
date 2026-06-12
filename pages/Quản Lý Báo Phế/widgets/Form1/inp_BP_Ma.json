@@ -15,6 +15,11 @@
     }
   ],
   "dynamicHeight": "FIXED",
+  "dynamicPropertyPathList": [
+    {
+      "key": "onTextChanged"
+    }
+  ],
   "dynamicTriggerPathList": [
     {
       "key": "onTextChanged"
@@ -42,7 +47,7 @@
   "mobileRightColumn": 21,
   "mobileTopRow": 6,
   "needsErrorInfo": false,
-  "onTextChanged": "{{Search_Item_Code.run()}}",
+  "onTextChanged": "{{ Search_Item_Details.run({code: inp_BP_Ma.text}) }}",
   "originalBottomRow": 13,
   "originalTopRow": 6,
   "parentColumnSpace": 9.1005859375,

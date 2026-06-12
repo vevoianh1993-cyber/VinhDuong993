@@ -1,22 +1,62 @@
 SELECT 
-    c.tool_code,
-    c.specifications,
-    c.unit,
-    -- Tính Số lượng Đầu kỳ (Tồn dư - Nhập + Xuất)
-    (c.current_qty 
-     - COALESCE(SUM(CASE WHEN t.trans_type = 'IMPORT' THEN t.quantity ELSE 0 END), 0) 
-     + COALESCE(SUM(CASE WHEN t.trans_type = 'EXPORT' THEN t.quantity ELSE 0 END), 0)
-    ) AS opening_qty,
-    -- Tính tổng Số lượng Nhập
-    COALESCE(SUM(CASE WHEN t.trans_type = 'IMPORT' THEN t.quantity ELSE 0 END), 0) AS total_import,
-    -- Tính tổng Số lượng Xuất
-    COALESCE(SUM(CASE WHEN t.trans_type = 'EXPORT' THEN t.quantity ELSE 0 END), 0) AS total_export,
-    -- Tồn dư hiện tại
-    c.current_qty,
-    c.storage_area,
-    -- Lấy thời gian của thao tác gần nhất
-    MAX(t.trans_time) AS last_trans
+    row_number() OVER (ORDER BY c.tool_code) AS "STT 序号",
+    c.tool_code AS "Mã vật liệu 物料编号",
+    c.specifications AS "Tên vật liệu 物料名称",
+    c.unit AS "Đơn vị 单位",
+    
+    -- Tổng SL Đầu kì
+    (
+        COALESCE((
+            SELECT SUM(CASE WHEN tt.trans_type = 'IMPORT' THEN tt.quantity ELSE 0 END) -
+                       SUM(CASE WHEN tt.trans_type = 'EXPORT' THEN tt.quantity ELSE 0 END)
+            FROM tools_transactions tt 
+            WHERE tt.tool_code = c.tool_code 
+            AND tt.trans_time < date_trunc('month', NOW())
+        ), 0)
+        - 
+        COALESCE((
+            SELECT SUM(st.quantity) 
+            FROM scrap_transactions st 
+            WHERE st.item_code = c.tool_code 
+            AND st.trans_type IN ('XUAT_BAO_PHE', 'NHAP_PHE')
+            AND st.trans_time < date_trunc('month', NOW())
+        ), 0)
+    ) AS "Tổng SL Đầu kì 期初结存数量",
+
+    -- Tổng SL nhập
+    COALESCE((
+        SELECT SUM(tt.quantity) FROM tools_transactions tt 
+        WHERE tt.tool_code = c.tool_code AND tt.trans_type = 'IMPORT'
+        AND tt.trans_time >= date_trunc('month', NOW())
+    ), 0) AS "Tổng SL nhập 入库数量  合计",
+
+    -- Tổng SL xuất (Phải cộng gộp báo phế vì Công cụ không được ghi xuất phế ở bảng tools_transactions)
+    (
+        COALESCE((
+            SELECT SUM(tt.quantity) FROM tools_transactions tt 
+            WHERE tt.tool_code = c.tool_code AND tt.trans_type = 'EXPORT'
+            AND tt.trans_time >= date_trunc('month', NOW())
+        ), 0)
+        +
+        COALESCE((
+            SELECT SUM(st.quantity) FROM scrap_transactions st 
+            WHERE st.item_code = c.tool_code AND st.trans_type IN ('XUAT_BAO_PHE', 'NHAP_PHE')
+            AND st.trans_time >= date_trunc('month', NOW())
+        ), 0)
+    ) AS "Tổng SL xuất 出库数量 合计",
+
+    -- Tổng SL tồn dư
+    c.current_qty AS "Tổng SL tồn dư 结存余量合计",
+
+    -- Vị trí
+    c.storage_area AS "Vị trí 放货位置",
+
+    -- Thao tác cuối cùng
+    COALESCE((
+        SELECT TO_CHAR(MAX(trans_time), 'YYYY-MM-DD HH24:MI:SS')
+        FROM tools_transactions tt
+        WHERE tt.tool_code = c.tool_code
+    ), '') AS "Thao tác cuối cùng 上次交易"
+
 FROM tools_catalog c
-LEFT JOIN tools_transactions t ON c.tool_code = t.tool_code
-GROUP BY c.tool_code, c.specifications, c.unit, c.current_qty, c.storage_area
-ORDER BY c.tool_code ASC;
+ORDER BY c.tool_code;

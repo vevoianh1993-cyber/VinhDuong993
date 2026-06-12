@@ -1,0 +1,57 @@
+{
+  "allowedFileTypes": [
+    "*"
+  ],
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 5,
+  "boxShadow": "none",
+  "buttonColor": "#15803d",
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onFilesSelected"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onFilesSelected"
+    }
+  ],
+  "dynamicTyping": true,
+  "fileDataType": "Array",
+  "files": [],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isRequired": false,
+  "isVisible": true,
+  "key": "7k0bbjm3cc",
+  "label": "Nhập từ Excel导入",
+  "leftColumn": 43,
+  "maxFileSize": 5,
+  "maxNumFiles": 1,
+  "minWidth": 120,
+  "mobileBottomRow": 5,
+  "mobileLeftColumn": 45,
+  "mobileRightColumn": 61,
+  "mobileTopRow": 1,
+  "needsErrorInfo": false,
+  "onFilesSelected": "(async () => {\n    const files = FilePicker_Scrap.files;\n    if (!files || files.length === 0) return;\n\n    const excelData = files[0].data;\n    if (!excelData || excelData.length === 0) {\n        showAlert(\"❌ File trống!\", \"error\");\n        return;\n    }\n\n    try {\n        showAlert(\"⏳ Đang đẩy dữ liệu báo phế lên Database...\", \"info\");\n        let count = 0;\n\n        for (let row of excelData) {\n            // Lấy trực tiếp từ cột tool_code (Do file của bạn đã quá chuẩn rồi)\n            if (!row.tool_code) continue; \n\n            await Action_AddScrap.run({\n                stt: row.stt || null,\n                workshop: row.workshop || '',\n                tool_code: String(row.tool_code).trim(),\n                tool_name: row.tool_name || '',\n                unit: row.unit || '',\n                quantity: Number(row.quantity) || 0,\n                requester: row.requester || '',\n                image_url: row.image_url || '',\n                material_type: row.material_type || '',\n                usage_location: row.usage_location || '',\n                scrap_reason: row.scrap_reason || '',\n                approver: row.approve || '' // Lấy đúng tên cột \"approve\" trong file của bạn\n            });\n            count++;\n        }\n\n        if (count > 0) {\n            showAlert(`✅ Đã nhập thành công ${count} thiết bị báo phế!`, \"success\");\n            await Get_Scrap_List.run(); // Load lại bảng hiển thị\n        } else {\n            showAlert(\"⚠️ Không có dòng dữ liệu hợp lệ (Cột tool_code bị trống)!\", \"warning\");\n        }\n\n        resetWidget('FilePicker_Scrap', true);\n\n    } catch (err) {\n        showAlert(\"❌ Lỗi xử lý: \" + err.message, \"error\");\n    }\n})();",
+  "parentColumnSpace": 16.734375,
+  "parentId": "9s6krsc3uk",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "selectedFiles": [],
+  "topRow": 1,
+  "type": "FILE_PICKER_WIDGET_V2",
+  "version": 1,
+  "widgetId": "um7wuqyc6e",
+  "widgetName": "FilePicker_Scrap"
+}

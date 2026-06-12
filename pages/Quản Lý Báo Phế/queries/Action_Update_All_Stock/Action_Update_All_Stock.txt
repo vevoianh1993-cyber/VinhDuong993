@@ -1,0 +1,7 @@
+UPDATE parts_catalog 
+SET current_qty = current_qty - {{this.params.qty_pt}} 
+WHERE TRIM(part_code::text) = TRIM({{this.params.code}}::text) AND {{this.params.qty_pt}} > 0;
+
+UPDATE tools_catalog 
+SET current_qty = current_qty - {{this.params.qty_cc}} 
+WHERE TRIM(tool_code::text) = TRIM({{this.params.code}}::text) AND {{this.params.qty_cc}} > 0;

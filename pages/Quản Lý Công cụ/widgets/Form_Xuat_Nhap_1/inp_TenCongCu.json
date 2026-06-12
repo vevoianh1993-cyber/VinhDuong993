@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 21,
   "boxShadow": "none",
-  "defaultText": "{{ Get_Bang_Tool.data.find(t => t.tool_code === inp_MaCongCu.text)?.specifications || '' }}",
+  "defaultText": "{{ Search_Tool_By_Code.data[0].specifications || \"\" }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
@@ -42,8 +42,8 @@
   "mobileRightColumn": 21,
   "mobileTopRow": 14,
   "needsErrorInfo": false,
-  "originalBottomRow": 21,
-  "originalTopRow": 14,
+  "originalBottomRow": 52,
+  "originalTopRow": 45,
   "parentColumnSpace": 8.294921875,
   "parentId": "03rztqscr8",
   "parentRowSpace": 10,

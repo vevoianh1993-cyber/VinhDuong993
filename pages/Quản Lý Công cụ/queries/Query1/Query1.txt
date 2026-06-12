@@ -1,4 +1,4 @@
-ALTER TABLE tools_catalog 
-ADD COLUMN IF NOT EXISTS actual_qty INT DEFAULT 0,
-ADD COLUMN IF NOT EXISTS diff_reason TEXT,
-ADD COLUMN IF NOT EXISTS check_notes TEXT;
+SELECT DISTINCT trans_type, COUNT(*) 
+FROM tools_transactions 
+WHERE EXTRACT(MONTH FROM trans_time::timestamp) = 6 
+GROUP BY trans_type;

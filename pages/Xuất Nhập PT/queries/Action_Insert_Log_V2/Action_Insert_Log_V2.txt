@@ -1,0 +1,20 @@
+INSERT INTO transactions (
+    sn_code, 
+    trans_type, 
+    quantity, 
+    emp_code, 
+    urgency_level, 
+    notes, 
+    machine_used, 
+    trans_time
+)
+VALUES (
+    {{ inp_MaVatLieu.text.trim() }},
+    'XUAT_KHO',
+    {{ Number(inp_SoLuong.text) }}, 
+    {{ sel_NhanVien.selectedOptionValue }},
+    {{ sel_KhanCap.selectedOptionValue }},
+    {{ inp_GhiChu.text }},
+    {{ inp_LoaiMay.text }},
+    NOW()
+);

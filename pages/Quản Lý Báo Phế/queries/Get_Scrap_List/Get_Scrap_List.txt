@@ -1,1 +1,18 @@
-SELECT * FROM scrap_management ORDER BY id DESC;
+SELECT 
+    id AS "STT 序号",
+    workshop AS "Xưởng 车间",
+    tool_code AS "Mã vật liệu 物料编码",
+    tool_name AS "Tên vật liệu 物料名称",
+    unit AS "Đơn vị 单位",
+    quantity AS "Số lượng 数量",
+    requester AS "Người đặt mua 申请人",
+    image_url AS "Hình ảnh 照片",
+    material_type AS "Loại vật liệu 材料类别", 
+    usage_location AS "Vị trí sử dụng 原用途",
+    scrap_reason AS "Nguyên nhân báo phế 报废原因及状况",
+    approver AS "Người phê duyệt 审核人",
+    scrap_status AS "Trạng thái chi tiết 状态详情",
+    notes AS "Ghi chú 备注"
+FROM scrap_management 
+WHERE status = 'Pending'
+ORDER BY id DESC;

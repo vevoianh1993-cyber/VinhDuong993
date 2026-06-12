@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "6a2617856c35e1cda1ecf557_43e634ae-4ea7-4672-bbce-06a15e437eb5",
+  "gitSyncId": "6a2617856c35e1cda1ecf557_aac3e977-9299-4197-8754-31aca451c0b6",
   "id": "Quản Lý Báo Phế_Query1",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT column_name \nFROM information_schema.columns \nWHERE table_name = 'scrap_transactions';",
+      "body": "SELECT tool_code, specifications, current_qty \nFROM tools_catalog \nWHERE tool_code = '03.06.0808';",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

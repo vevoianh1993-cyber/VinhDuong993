@@ -1,13 +1,32 @@
 SELECT 
-    machine_id AS "Loại máy dùng 使用设备",
-    tool_code AS "Mã vật liệu 物料编号",
-    (SELECT specifications FROM tools_catalog WHERE tool_code = tools_transactions.tool_code) AS "Tên vật liệu 物料名称",
-    (SELECT specifications FROM tools_catalog WHERE tool_code = tools_transactions.tool_code) AS "Quy cách 规格型号",
-    trans_time AS "Thời gian 时间",
-    emp_code AS "Mã nhân viên 员工代码",
-    quantity AS "Số lượng xuất 出库数量",
-    urgency_level AS "Mức độ khẩn cấp 紧急程度",
-    notes AS "Ghi chú 备注"
-FROM tools_transactions 
-WHERE trans_type = 'EXPORT'
-ORDER BY trans_time DESC;
+    t.machine_id AS "Loại máy dùng 使用设备",
+    t.tool_code AS "Mã vật liệu 物料编号",
+    c.specifications AS "Tên vật liệu 物料名称",
+    c.specifications AS "Quy cách 规格型号",
+    t.trans_time AS "Thời gian 时间",
+    t.emp_code AS "Mã nhân viên 员工代码",
+    t.quantity AS "Số lượng xuất 出库数量",
+    t.urgency_level AS "Mức độ khẩn cấp 紧急程度",
+    t.notes AS "Ghi chú 备注"
+FROM (
+    -- Lấy xuất kho thường
+    SELECT machine_id, tool_code, trans_time, emp_code, quantity, urgency_level, notes
+    FROM tools_transactions 
+    WHERE trans_type = 'EXPORT'
+    
+    UNION ALL
+    
+    -- Lấy xuất báo phế
+    SELECT 
+        'Báo Phế' AS machine_id, 
+        item_code AS tool_code, 
+        trans_time, 
+        emp_code, 
+        quantity, 
+        'Bình thường' AS urgency_level, 
+        'Xuất báo phế' AS notes
+    FROM scrap_transactions 
+    WHERE trans_type IN ('XUAT_BAO_PHE', 'NHAP_PHE')
+) AS t
+LEFT JOIN tools_catalog c ON t.tool_code = c.tool_code
+ORDER BY t.trans_time DESC;

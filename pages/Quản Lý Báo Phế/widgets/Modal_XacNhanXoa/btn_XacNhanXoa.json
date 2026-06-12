@@ -1,0 +1,54 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 22,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonStyle": "PRIMARY_BUTTON",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "ifi1yb4ubf",
+  "leftColumn": 47,
+  "minWidth": 120,
+  "mobileBottomRow": 22,
+  "mobileLeftColumn": 47,
+  "mobileRightColumn": 63,
+  "mobileTopRow": 18,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  (async () => {\n    // 1. Kiểm tra mật khẩu quản lý (thay \"888888\" bằng mật khẩu bạn muốn)\n    const pass = inp_MatKhauXoa.text;\n    if (pass !== \"Admin\") {\n      return showAlert(\"❌ Mật khẩu sai! Lệnh hủy toàn bộ bị từ chối.\", \"error\");\n    }\n\n    try {\n      // 2. Chạy Query Xóa TOÀN BỘ (không cần truyền id nữa)\n      await Action_Delete_Scrap.run();\n\n      // 3. Làm mới bảng danh sách phế để hiển thị bảng trống\n      await Get_Scrap_List.run({ ignoreCache: true });\n\n      // 4. Đóng Modal và làm sạch ô mật khẩu\n      closeModal(\"Modal_XacNhanXoa\");\n      inp_MatKhauXoa.setValue(\"\");\n      \n      showAlert(\"✅ ĐÃ XÓA SẠCH TOÀN BỘ DỮ LIỆU BÁO PHẾ!\", \"success\");\n\n    } catch (err) {\n      console.error(\"Lỗi:\", err);\n      showAlert(\"❌ Lỗi hệ thống: \" + err.message, \"error\");\n    }\n  })()\n}}",
+  "parentId": "6zim3y20uy",
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "text": "Confirm",
+  "topRow": 18,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "4ekvi3uj5c",
+  "widgetName": "btn_XacNhanXoa"
+}

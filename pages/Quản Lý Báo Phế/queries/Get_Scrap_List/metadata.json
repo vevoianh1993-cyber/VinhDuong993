@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT * FROM scrap_management ORDER BY id DESC;",
+      "body": "SELECT \n    id AS \"STT 序号\",\n    workshop AS \"Xưởng 车间\",\n    tool_code AS \"Mã vật liệu 物料编码\",\n    tool_name AS \"Tên vật liệu 物料名称\",\n    unit AS \"Đơn vị 单位\",\n    quantity AS \"Số lượng 数量\",\n    requester AS \"Người đặt mua 申请人\",\n    image_url AS \"Hình ảnh 照片\",\n    material_type AS \"Loại vật liệu 材料类别\", \n    usage_location AS \"Vị trí sử dụng 原用途\",\n    scrap_reason AS \"Nguyên nhân báo phế 报废原因及状况\",\n    approver AS \"Người phê duyệt 审核人\",\n    scrap_status AS \"Trạng thái chi tiết 状态详情\",\n    notes AS \"Ghi chú 备注\"\nFROM scrap_management \nWHERE status = 'Pending'\nORDER BY id DESC;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

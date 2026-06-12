@@ -1,0 +1,30 @@
+SELECT 
+    t.id AS "STT 序号",
+    CASE 
+        WHEN t.trans_type = 'XUAT_PHE' THEN 'Xuất phế 出库'
+        WHEN t.trans_type = 'NHAP_PHE' THEN 'Nhập phế 入库'
+        ELSE t.trans_type 
+    END AS "Trạng thái 状态",
+    t.item_code AS "Mã vật liệu 物料编码",
+    
+    COALESCE(
+        (SELECT specifications FROM tools_catalog WHERE tool_code = t.item_code AND specifications NOT LIKE 'Auto-added%' LIMIT 1),
+        (SELECT (COALESCE(name_vn, '') || ' ' || COALESCE(specifications, '')) FROM parts_catalog WHERE part_code = t.item_code LIMIT 1),
+        (SELECT specifications FROM tools_catalog WHERE tool_code = t.item_code LIMIT 1)
+    ) AS "Tên vật liệu 物料名称",
+    
+    COALESCE(
+        (SELECT unit FROM tools_catalog WHERE tool_code = t.item_code AND specifications NOT LIKE 'Auto-added%' LIMIT 1),
+        (SELECT unit FROM parts_catalog WHERE part_code = t.item_code LIMIT 1),
+        (SELECT unit FROM tools_catalog WHERE tool_code = t.item_code LIMIT 1)
+    ) AS "Đơn vị 单位",
+    
+    t.quantity AS "Số lượng 数量",
+    sm.scrap_status AS "Trạng thái chi tiết 状态详情",
+    t.notes AS "Ghi chú 备注",
+    t.emp_code AS "Người thao tác",
+    t.trans_time AS "Thời gian 时间"
+FROM scrap_transactions t
+LEFT JOIN scrap_management sm ON t.item_code = sm.tool_code AND t.trans_time >= sm.created_at - INTERVAL '1 second' AND t.trans_time <= sm.created_at + INTERVAL '1 second'
+WHERE t.trans_type IN ('XUAT_PHE', 'NHAP_PHE')
+ORDER BY t.trans_time DESC;

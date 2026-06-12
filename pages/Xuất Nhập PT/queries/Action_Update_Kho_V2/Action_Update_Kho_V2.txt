@@ -1,0 +1,4 @@
+UPDATE parts_catalog
+SET current_qty = CAST(current_qty AS INTEGER) - {{ Number(inp_SoLuong.text) }}
+WHERE part_code = {{ inp_MaVatLieu.text.trim() }}
+  AND CAST(COALESCE(current_qty, 0) AS INTEGER) >= {{ Number(inp_SoLuong.text) }};

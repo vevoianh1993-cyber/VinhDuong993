@@ -1,0 +1,23 @@
+BEGIN;
+
+-- 1. Ghi log (Nếu lỗi, nó sẽ báo ngay tại đây)
+INSERT INTO tools_transactions (tool_code, trans_type, quantity, emp_code, urgency_level, machine_id, notes, trans_time)
+VALUES (
+    TRIM({{ this.params.code }}::text), 
+    'EXPORT', 
+    {{ Number(this.params.qty) }}, 
+    {{ this.params.emp }}, 
+    {{ this.params.urg }}, 
+    {{ this.params.mach }}, 
+    {{ this.params.note }}, 
+    NOW()
+);
+
+-- 2. Trừ tồn kho (Bỏ khối DO END để xem lỗi thực tế)
+UPDATE tools_catalog 
+SET current_qty = current_qty - {{ Number(this.params.qty) }}
+WHERE TRIM(tool_code::text) = TRIM({{ this.params.code }}::text) 
+AND current_qty >= {{ Number(this.params.qty) }};
+
+-- Không cần DO END, để cho phép transaction kết thúc tự nhiên
+COMMIT;

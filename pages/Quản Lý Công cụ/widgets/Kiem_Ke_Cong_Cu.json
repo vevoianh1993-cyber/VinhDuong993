@@ -34,21 +34,15 @@
   "columnOrder": [
     "xn__M_vt_liu____87a4520hska8871go3pbu4tne3a",
     "xn__Tn_Vt_Liu____oeb3877hjlaw783e2lmc3g6bf53a",
-    "xn__Quy_Cch____w4a72682ald9c",
     "xn__n_V____22a47i616odn0fljj",
     "xn__Khu_vc____zv7d9665cxwlf4kv18a",
     "xn__S_D_Thng_Trc____sjb926aja4872ldga7968g6f9bfgycyl3g",
     "xn__Nhp_thng_ny____pgbl5870k51wivl0bdm9auva",
     "xn__Xut_thng_ny____pgbl9460kwdziz9xbdm9auva",
-    "xn__Tr_kho_thng_ny____0obo6643mdr9ih8kbubzbro4byzan878e",
     "xn__S_D_Cui_Thng____wjb526a784qga42012agkybvwa8564b",
-    "xn__Kim_K_Thc_T____ukb2133jwbaz8cp750gyyubuva649nzo3atv1n",
-    "xn__Chnh_Lch_Kim_K____utbm0393micaz378qngfx87jj85a",
-    "xn__Nguyn_Nhn____wbb1iv732m24kafh3a7be",
-    "xn__Ghi_Ch____b9a8609v23xb",
     "EditActions1"
   ],
-  "columnUpdatedAt": 1780967427842,
+  "columnUpdatedAt": 1781256747283,
   "columnWidthMap": {},
   "customIsLoading": false,
   "customIsLoadingValue": "",
@@ -78,9 +72,6 @@
       "key": "primaryColumns.xn__Tn_Vt_Liu____oeb3877hjlaw783e2lmc3g6bf53a.computedValue"
     },
     {
-      "key": "primaryColumns.xn__Quy_Cch____w4a72682ald9c.computedValue"
-    },
-    {
       "key": "primaryColumns.xn__n_V____22a47i616odn0fljj.computedValue"
     },
     {
@@ -96,22 +87,7 @@
       "key": "primaryColumns.xn__Xut_thng_ny____pgbl9460kwdziz9xbdm9auva.computedValue"
     },
     {
-      "key": "primaryColumns.xn__Tr_kho_thng_ny____0obo6643mdr9ih8kbubzbro4byzan878e.computedValue"
-    },
-    {
       "key": "primaryColumns.xn__S_D_Cui_Thng____wjb526a784qga42012agkybvwa8564b.computedValue"
-    },
-    {
-      "key": "primaryColumns.xn__Kim_K_Thc_T____ukb2133jwbaz8cp750gyyubuva649nzo3atv1n.computedValue"
-    },
-    {
-      "key": "primaryColumns.xn__Chnh_Lch_Kim_K____utbm0393micaz378qngfx87jj85a.computedValue"
-    },
-    {
-      "key": "primaryColumns.xn__Nguyn_Nhn____wbb1iv732m24kafh3a7be.computedValue"
-    },
-    {
-      "key": "primaryColumns.xn__Ghi_Ch____b9a8609v23xb.computedValue"
     },
     {
       "key": "primaryColumns.EditActions1.saveButtonColor"
@@ -127,9 +103,6 @@
     },
     {
       "key": "primaryColumns.EditActions1.isDiscardDisabled"
-    },
-    {
-      "key": "primaryColumns.xn__Chnh_Lch_Kim_K____utbm0393micaz378qngfx87jj85a.cellBackground"
     }
   ],
   "dynamicPropertyPathList": [
@@ -141,31 +114,9 @@
     },
     {
       "key": "primaryColumns.EditActions1.isDiscardDisabled"
-    },
-    {
-      "key": "primaryColumns.xn__Kim_K_Thc_T____ukb2133jwbaz8cp750gyyubuva649nzo3atv1n.onSubmit"
-    },
-    {
-      "key": "primaryColumns.xn__Nguyn_Nhn____wbb1iv732m24kafh3a7be.onSubmit"
-    },
-    {
-      "key": "primaryColumns.xn__Ghi_Ch____b9a8609v23xb.onSubmit"
-    },
-    {
-      "key": "primaryColumns.xn__Chnh_Lch_Kim_K____utbm0393micaz378qngfx87jj85a.cellBackground"
     }
   ],
-  "dynamicTriggerPathList": [
-    {
-      "key": "primaryColumns.xn__Kim_K_Thc_T____ukb2133jwbaz8cp750gyyubuva649nzo3atv1n.onSubmit"
-    },
-    {
-      "key": "primaryColumns.xn__Nguyn_Nhn____wbb1iv732m24kafh3a7be.onSubmit"
-    },
-    {
-      "key": "primaryColumns.xn__Ghi_Ch____b9a8609v23xb.onSubmit"
-    }
-  ],
+  "dynamicTriggerPathList": [],
   "enableClientSideSearch": true,
   "endOfData": false,
   "flexVerticalAlignment": "start",
@@ -234,70 +185,6 @@
       "validation": {},
       "width": 150
     },
-    "xn__Chnh_Lch_Kim_K____utbm0393micaz378qngfx87jj85a": {
-      "alias": "Chênh Lệch Kiểm Kê / 盘点差异",
-      "allowCellWrapping": false,
-      "allowSameOptionsInNewRow": true,
-      "cellBackground": "{{(() => { const tableData = Kiem_Ke_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] === 0 ? \"#dcfce7\" : // Xanh lá nhạt\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] < 0 ? \"#fee2e2\" : // Đỏ nhạt\n  \"#ffedd5\" // Cam nhạt\n)) : \n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] === 0 ? \"#dcfce7\" : // Xanh lá nhạt\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] < 0 ? \"#fee2e2\" : // Đỏ nhạt\n  \"#ffedd5\" // Cam nhạt\n })()}}",
-      "columnType": "number",
-      "computedValue": "{{(() => { const tableData = Kiem_Ke_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => ( currentRow[\"Kiểm Kê Thực Tế / 本月实际盘点\"] - currentRow[\"Số Dư Cuối Tháng / 本月结存\"] )) :  currentRow[\"Kiểm Kê Thực Tế / 本月实际盘点\"] - currentRow[\"Số Dư Cuối Tháng / 本月结存\"]  })()}}",
-      "currencyCode": "USD",
-      "decimals": 0,
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "xn__Chnh_Lch_Kim_K____utbm0393micaz378qngfx87jj85a",
-      "index": 11,
-      "isCellEditable": false,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": false,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Chênh Lệch Kiểm Kê / 盘点差异",
-      "notation": "standard",
-      "originalId": "Chênh Lệch Kiểm Kê / 盘点差异",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "thousandSeparator": true,
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    },
-    "xn__Ghi_Ch____b9a8609v23xb": {
-      "alias": "Ghi Chú / 备注",
-      "allowCellWrapping": false,
-      "allowSameOptionsInNewRow": true,
-      "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Kiem_Ke_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Ghi Chú / 备注\"])) : Ghi Chú / 备注 })()}}",
-      "currencyCode": "USD",
-      "decimals": 0,
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "xn__Ghi_Ch____b9a8609v23xb",
-      "index": 13,
-      "isCellEditable": true,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": true,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Ghi Chú / 备注",
-      "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    try {\n      // 1. Chạy Query lưu\n      await Action_Luu_Kiem_Ke_Tool.run();\n\n      // 2. Làm mới bảng (lấy dữ liệu mới nhất từ DB lên)\n      await Get_Inventory_Data.run();\n      \n      showAlert(\"✅ Đã lưu và cập nhật dữ liệu!\", \"success\");\n    } catch (e) {\n      showAlert(\"❌ Lỗi: \" + e.message, \"error\");\n    }\n  })()\n}}",
-      "originalId": "Ghi Chú / 备注",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "thousandSeparator": true,
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    },
     "xn__Khu_vc____zv7d9665cxwlf4kv18a": {
       "alias": "Khu vực / 存放区域",
       "allowCellWrapping": false,
@@ -322,38 +209,6 @@
       "label": "Khu vực / 存放区域",
       "notation": "standard",
       "originalId": "Khu vực / 存放区域",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "thousandSeparator": true,
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    },
-    "xn__Kim_K_Thc_T____ukb2133jwbaz8cp750gyyubuva649nzo3atv1n": {
-      "alias": "Kiểm Kê Thực Tế / 本月实际盘点",
-      "allowCellWrapping": false,
-      "allowSameOptionsInNewRow": true,
-      "columnType": "number",
-      "computedValue": "{{(() => { const tableData = Kiem_Ke_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Kiểm Kê Thực Tế / 本月实际盘点\"])) : Kiểm Kê Thực Tế / 本月实际盘点 })()}}",
-      "currencyCode": "USD",
-      "decimals": 0,
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "xn__Kim_K_Thc_T____ukb2133jwbaz8cp750gyyubuva649nzo3atv1n",
-      "index": 10,
-      "isCellEditable": true,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": true,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Kiểm Kê Thực Tế / 本月实际盘点",
-      "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    try {\n      // 1. Chạy Query lưu\n      await Action_Luu_Kiem_Ke_Tool.run();\n\n      // 2. Làm mới bảng (lấy dữ liệu mới nhất từ DB lên)\n      await Get_Inventory_Data.run();\n      \n      showAlert(\"✅ Đã lưu và cập nhật dữ liệu!\", \"success\");\n    } catch (e) {\n      showAlert(\"❌ Lỗi: \" + e.message, \"error\");\n    }\n  })()\n}}",
-      "originalId": "Kiểm Kê Thực Tế / 本月实际盘点",
       "sticky": "",
       "textSize": "0.875rem",
       "thousandSeparator": true,
@@ -392,38 +247,6 @@
       "verticalAlignment": "CENTER",
       "width": 150
     },
-    "xn__Nguyn_Nhn____wbb1iv732m24kafh3a7be": {
-      "alias": "Nguyên Nhân / 差异原因",
-      "allowCellWrapping": false,
-      "allowSameOptionsInNewRow": true,
-      "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Kiem_Ke_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Nguyên Nhân / 差异原因\"])) : Nguyên Nhân / 差异原因 })()}}",
-      "currencyCode": "USD",
-      "decimals": 0,
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "xn__Nguyn_Nhn____wbb1iv732m24kafh3a7be",
-      "index": 12,
-      "isCellEditable": true,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": true,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Nguyên Nhân / 差异原因",
-      "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    try {\n      // 1. Chạy Query lưu\n      await Action_Luu_Kiem_Ke_Tool.run();\n\n      // 2. Làm mới bảng (lấy dữ liệu mới nhất từ DB lên)\n      await Get_Inventory_Data.run();\n      \n      showAlert(\"✅ Đã lưu và cập nhật dữ liệu!\", \"success\");\n    } catch (e) {\n      showAlert(\"❌ Lỗi: \" + e.message, \"error\");\n    }\n  })()\n}}",
-      "originalId": "Nguyên Nhân / 差异原因",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "thousandSeparator": true,
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    },
     "xn__Nhp_thng_ny____pgbl5870k51wivl0bdm9auva": {
       "alias": "Nhập tháng này / 本月入库",
       "allowCellWrapping": false,
@@ -448,37 +271,6 @@
       "label": "Nhập tháng này / 本月入库",
       "notation": "standard",
       "originalId": "Nhập tháng này / 本月入库",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "thousandSeparator": true,
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    },
-    "xn__Quy_Cch____w4a72682ald9c": {
-      "alias": "Quy Cách / 规格",
-      "allowCellWrapping": false,
-      "allowSameOptionsInNewRow": true,
-      "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Kiem_Ke_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Quy Cách / 规格\"])) : Quy Cách / 规格 })()}}",
-      "currencyCode": "USD",
-      "decimals": 0,
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "xn__Quy_Cch____w4a72682ald9c",
-      "index": 2,
-      "isCellEditable": false,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": false,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Quy Cách / 规格",
-      "notation": "standard",
-      "originalId": "Quy Cách / 规格",
       "sticky": "",
       "textSize": "0.875rem",
       "thousandSeparator": true,
@@ -572,37 +364,6 @@
       "label": "Tên Vật Liệu / 物料名称",
       "notation": "standard",
       "originalId": "Tên Vật Liệu / 物料名称",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "thousandSeparator": true,
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    },
-    "xn__Tr_kho_thng_ny____0obo6643mdr9ih8kbubzbro4byzan878e": {
-      "alias": "Trả kho tháng này / 本月退回仓库",
-      "allowCellWrapping": false,
-      "allowSameOptionsInNewRow": true,
-      "columnType": "number",
-      "computedValue": "{{(() => { const tableData = Kiem_Ke_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentRow[\"Trả kho tháng này / 本月退回仓库\"])) : Trả kho tháng này / 本月退回仓库 })()}}",
-      "currencyCode": "USD",
-      "decimals": 0,
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "xn__Tr_kho_thng_ny____0obo6643mdr9ih8kbubzbro4byzan878e",
-      "index": 8,
-      "isCellEditable": false,
-      "isCellVisible": true,
-      "isDerived": false,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": false,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Trả kho tháng này / 本月退回仓库",
-      "notation": "standard",
-      "originalId": "Trả kho tháng này / 本月退回仓库",
       "sticky": "",
       "textSize": "0.875rem",
       "thousandSeparator": true,

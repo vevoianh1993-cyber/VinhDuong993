@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO transactions (sn_code, trans_type, quantity, emp_code, urgency_level, notes, machine_used, trans_time)\nVALUES (\n    '{{inp_MaVatLieu.text}}',\n    'XUAT_KHO',\n    {{inp_SoLuong.text || 0}}, \n    '{{sel_NhanVien.selectedOptionValue}}',\n    '{{sel_KhanCap.selectedOptionValue}}',\n    '{{inp_GhiChu.text}}',\n    '{{inp_LoaiMay.text}}',\n    NOW()\n);\n\nUPDATE parts_catalog\nSET current_qty = current_qty - {{inp_SoLuong.text || 0}}\nWHERE part_code = '{{inp_MaVatLieu.text}}';",
+      "body": "UPDATE parts_catalog\nSET current_qty = current_qty - {{ Number(inp_SoLuong.text) }}\nWHERE TRIM(part_code::text) = TRIM({{ inp_MaVatLieu.text.trim() }})\n  AND COALESCE(current_qty, 0) >= {{ Number(inp_SoLuong.text) }}\nRETURNING *;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

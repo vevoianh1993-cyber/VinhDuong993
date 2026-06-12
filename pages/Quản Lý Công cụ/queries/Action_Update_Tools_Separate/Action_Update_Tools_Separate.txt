@@ -1,0 +1,4 @@
+UPDATE tools_catalog 
+SET current_qty = current_qty - {{ this.params.qty }}
+WHERE tool_code = {{ this.params.code }}
+  AND current_qty >= {{ this.params.qty }};

@@ -1,0 +1,9 @@
+SELECT part_code as code, name_vn as name, unit, storage_area as location
+FROM parts_catalog
+WHERE TRIM(part_code::text) = TRIM({{inp_BP_Ma.text}}::text)
+
+UNION ALL
+
+SELECT tool_code as code, specifications as name, unit, storage_area as location
+FROM tools_catalog
+WHERE TRIM(tool_code::text) = TRIM({{inp_BP_Ma.text}}::text)

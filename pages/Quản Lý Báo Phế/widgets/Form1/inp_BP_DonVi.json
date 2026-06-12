@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 13,
   "boxShadow": "none",
-  "defaultText": "{{ Search_Item_Code.data[0]?.don_vi || \"\" }}",
+  "defaultText": "{{ Search_Item_Details.data && Search_Item_Details.data.length > 0 ? Search_Item_Details.data[0].unit : \"\" }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"

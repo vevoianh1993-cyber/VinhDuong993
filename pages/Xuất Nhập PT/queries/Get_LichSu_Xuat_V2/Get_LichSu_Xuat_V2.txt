@@ -1,0 +1,15 @@
+SELECT 
+    row_number() OVER (ORDER BY t.trans_time DESC) AS "STT 序号",
+    t.machine_used AS "Loại máy dùng 使用位置",
+    t.sn_code AS "Mã vật liệu 物料编号（新）",
+    p.name_vn AS "Tên vật liệu 物料名称",
+    p.specifications AS "Quy cách 规格型号",
+    TO_CHAR(t.trans_time, 'YYYY-MM-DD HH24:MI:SS') AS "Thời gian 时间",
+    t.emp_code AS "Mã nhân viên 员工代码",
+    t.quantity AS "Số lượng xuất 出库数量",
+    t.urgency_level AS "Mức độ khẩn cấp 紧急程度",
+    t.notes AS "Ghi chú 备注"
+FROM transactions t
+LEFT JOIN parts_catalog p ON t.sn_code = p.part_code
+WHERE t.trans_type IN ('XUAT_KHO', 'XUAT')
+ORDER BY t.trans_time DESC;

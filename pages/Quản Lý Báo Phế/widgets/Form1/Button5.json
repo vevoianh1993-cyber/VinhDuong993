@@ -1,0 +1,55 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 42,
+  "boxShadow": "none",
+  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+  "buttonVariant": "PRIMARY",
+  "disabledWhenInvalid": false,
+  "dynamicBindingPathList": [
+    {
+      "key": "buttonColor"
+    },
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicPropertyPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "dynamicTriggerPathList": [
+    {
+      "key": "onClick"
+    }
+  ],
+  "isDefaultClickDisabled": true,
+  "isDisabled": false,
+  "isLoading": false,
+  "isVisible": true,
+  "key": "ifi1yb4ubf",
+  "leftColumn": 46,
+  "minWidth": 120,
+  "mobileBottomRow": 43,
+  "mobileLeftColumn": 44,
+  "mobileRightColumn": 60,
+  "mobileTopRow": 39,
+  "needsErrorInfo": false,
+  "onClick": "{{\n  (async () => {\n    // 1. LẤY DỮ LIỆU TỪ CÁC WIDGET\n    const ma_vl = inp_BP_Ma.text.trim();            \n    const so_luong_xuat = Number(inp_BP_SoLuong.text);     \n    const nguoi_xuat = inp_BP_NguoiDat.text \n    const trang_thai = sel_BP_TrangThai.selectedOptionValue; \n    const ghi_chu = inp_BP_GhiChu.text;                    \n\n    if (!ma_vl || so_luong_xuat <= 0) {\n        return showAlert(\"❌ Vui lòng nhập mã và số lượng xuất hợp lệ!\", \"warning\");\n    }\n    if (!trang_thai) {\n        return showAlert(\"❌ Vui lòng chọn Trạng thái xuất!\", \"warning\");\n    }\n\n    try {\n        showAlert(\"⏳ Đang rà soát và tính toán số lượng kho...\", \"info\");\n\n        // 2. RÀ SOÁT TỔNG SỐ LƯỢNG\n        const rows = await Check_So_Luong_Phe.run({ code: ma_vl });\n        let tong_ton_kho = 0;\n        rows.forEach(r => tong_ton_kho += r.quantity);\n        \n        if (so_luong_xuat > tong_ton_kho) {\n            return showAlert(`❌ Lỗi: Mã [${ma_vl}] chỉ còn tổng ${tong_ton_kho} cái.`, 'error');\n        }\n        \n        // 3. THUẬT TOÁN TRỪ LÙI DẦN (FIFO)\n        let so_luong_con_lai_can_xuat = so_luong_xuat;\n        \n        for (let i = 0; i < rows.length; i++) {\n            if (so_luong_con_lai_can_xuat <= 0) break; \n            \n            let dong_hien_tai = rows[i];\n            let so_luong_se_tru = 0;\n            let trang_thai_moi = 'Pending';\n            \n            if (dong_hien_tai.quantity <= so_luong_con_lai_can_xuat) {\n                so_luong_se_tru = dong_hien_tai.quantity;\n                trang_thai_moi = 'DA_XUAT'; \n                so_luong_con_lai_can_xuat -= dong_hien_tai.quantity;\n            } else {\n                so_luong_se_tru = so_luong_con_lai_can_xuat;\n                trang_thai_moi = 'Pending'; \n                so_luong_con_lai_can_xuat = 0; \n            }\n            \n            await Update_Dong_Phe.run({\n                id: dong_hien_tai.id,\n                deductQty: so_luong_se_tru,\n                newStatus: trang_thai_moi\n            });\n        }\n        \n        // 4. GHI LỊCH SỬ XUẤT (CHỈ CÓ 1 LẦN DUY NHẤT Ở ĐÂY)\n        await Insert_Lich_Su_Xuat.run({\n            code: ma_vl,\n            qty: so_luong_xuat,\n            emp: nguoi_xuat,\n            trang_thai: trang_thai,\n            ghi_chu: ghi_chu\n        });\n        \n        // 5. CẬP NHẬT GIAO DIỆN\n        await Get_Scrap_List.run(); \n        await Get_LS_Phe.run();      \n        resetWidget('Form1', true);  \n        \n        showAlert(`✅ Xuất thành công!`, \"success\");\n        \n    } catch (err) {\n        showAlert(\"❌ Lỗi hệ thống: \" + err.message, \"error\");\n    }\n  })()\n}}",
+  "parentColumnSpace": 7.48046875,
+  "parentId": "9s6krsc3uk",
+  "parentRowSpace": 10,
+  "placement": "CENTER",
+  "recaptchaType": "V3",
+  "renderMode": "CANVAS",
+  "resetFormOnClick": false,
+  "responsiveBehavior": "hug",
+  "rightColumn": 63,
+  "text": "Xuất phế 出库",
+  "topRow": 38,
+  "type": "BUTTON_WIDGET",
+  "version": 1,
+  "widgetId": "egn1fi8svs",
+  "widgetName": "Button5"
+}

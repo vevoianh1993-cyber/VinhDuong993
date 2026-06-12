@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "-- Bước 1: Ghi vào bảng lịch sử giao dịch XUẤT (Có lưu thêm vị trí lò/máy sử dụng)\nINSERT INTO tools_transactions (tool_code, trans_type, quantity, emp_code, urgency_level, machine_id, notes, trans_time)\nVALUES (\n    {{inp_MaCongCu.text}}, \n    'EXPORT', \n    {{inp_SoLuong.text}}, \n    {{sel_NhanVien.selectedOptionValue}}, \n    {{sel_KhanCap.selectedOptionValue}}, \n    {{inp_MaySuDung.text}},\n    {{inp_GhiChu.text}}, \n    NOW()\n);\n\n-- Bước 2: Trừ đi số lượng trong bảng danh mục tổng\nUPDATE tools_catalog \nSET current_qty = current_qty - {{inp_SoLuong.text}}\nWHERE tool_code = {{inp_MaCongCu.text}};",
+      "body": "BEGIN;\n\n-- 1. Thử ghi Log (Nếu sai khóa ngoại, nó sẽ báo lỗi ngay tại đây)\nINSERT INTO tools_transactions (tool_code, trans_type, quantity, emp_code, urgency_level, machine_id, notes, trans_time)\nVALUES (\n    {{ this.params.toolCode }}, \n    'EXPORT', \n    {{ this.params.qty }}, \n    {{ this.params.empCode }}, \n    {{ this.params.urgency }}, \n    {{ this.params.machineId }},\n    {{ this.params.notes }}, \n    NOW()\n);\n\n-- 2. Thực hiện trừ kho\nUPDATE tools_catalog \nSET current_qty = current_qty - {{ this.params.qty }}\nWHERE tool_code = {{ this.params.toolCode }}\n  AND current_qty >= {{ this.params.qty }};\n\n-- 3. Kiểm tra: Nếu UPDATE không thay đổi dòng nào (tức là tồn kho không đủ hoặc không tìm thấy mã), RAISE ERROR để hủy toàn bộ giao dịch\nDO $$\nBEGIN\n    IF NOT FOUND THEN\n        RAISE EXCEPTION 'Lỗi: Tồn kho không đủ hoặc không tìm thấy mã vật tư!';\n    END IF;\nEND $$;\n\nCOMMIT;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

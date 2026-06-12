@@ -1,0 +1,20 @@
+BEGIN;
+
+-- 1. Trừ tồn kho
+UPDATE parts_catalog SET current_qty = current_qty - {{this.params.qty_pt}} WHERE TRIM(part_code::text) = TRIM({{this.params.code}}::text) AND {{this.params.qty_pt}} > 0;
+UPDATE tools_catalog SET current_qty = current_qty - {{this.params.qty_cc}} WHERE TRIM(tool_code::text) = TRIM({{this.params.code}}::text) AND {{this.params.qty_cc}} > 0;
+
+-- 2. Ghi danh sách phế (Ghi tất cả)
+INSERT INTO scrap_management (workshop, tool_code, tool_name, unit, quantity, requester, material_type, usage_location, scrap_reason, approver, status, created_at, scrap_status, notes)
+VALUES ({{this.params.xuong}}, {{this.params.code}}, {{this.params.name}}, {{this.params.unit}}, {{this.params.qty}}, {{this.params.emp}}, {{this.params.loai}}, {{this.params.vitri}}, {{this.params.nguyennhan}}, {{this.params.nguoiduyet}}, 'Pending', NOW(), {{this.params.trangthai}}, {{this.params.ghichu}});
+
+-- 3. Ghi vào Transactions CHỈ KHI LÀ PHỤ TÙNG (Tránh lỗi khóa ngoại)
+INSERT INTO transactions (part_code, sn_code, quantity, trans_type, emp_code, notes, trans_time, machine_used, urgency_level)
+SELECT {{this.params.code}}, {{this.params.code}}, {{this.params.qty}}, 'XUAT', {{this.params.emp}}, 'Xuất báo phế', NOW(), 'Báo Phế', 'Bình thường'
+WHERE EXISTS (SELECT 1 FROM parts_catalog WHERE TRIM(part_code::text) = TRIM({{this.params.code}}::text));
+
+-- 4. Ghi nhập kho phế (Ghi tất cả)
+INSERT INTO scrap_transactions (item_code, quantity, trans_type, emp_code, notes, trans_time)
+VALUES ({{this.params.code}}, {{this.params.qty}}, 'NHAP_PHE', {{this.params.emp}}, 'Nhập từ kho tổng', NOW());
+
+COMMIT;

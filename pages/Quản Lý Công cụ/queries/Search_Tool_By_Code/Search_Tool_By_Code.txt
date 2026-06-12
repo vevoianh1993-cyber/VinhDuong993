@@ -1,0 +1,3 @@
+SELECT * FROM tools_catalog 
+WHERE tool_code = {{inp_MaCongCu.text}} 
+LIMIT 1;

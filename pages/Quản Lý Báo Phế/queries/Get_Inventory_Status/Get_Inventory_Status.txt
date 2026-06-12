@@ -1,0 +1,3 @@
+SELECT 
+    (SELECT SUM(current_qty) FROM parts_catalog WHERE part_code = {{this.params.code}}) as phu_tung,
+    (SELECT SUM(current_qty) FROM tools_catalog WHERE tool_code = {{this.params.code}}) as cong_cu

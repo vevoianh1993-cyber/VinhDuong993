@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 21,
   "boxShadow": "none",
-  "defaultText": "{{ Search_Item_Code.data[0]?.ten_vat_lieu || \"\" }}",
+  "defaultText": "{{ Search_Item_Details.data && Search_Item_Details.data.length > 0 ? Search_Item_Details.data[0].name : \"\" }}",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"

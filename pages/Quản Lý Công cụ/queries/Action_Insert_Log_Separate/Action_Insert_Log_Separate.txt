@@ -1,0 +1,20 @@
+INSERT INTO tools_transactions (
+    tool_code, 
+    trans_type, 
+    quantity, 
+    emp_code, 
+    urgency_level, 
+    machine_id, 
+    notes, 
+    trans_time
+)
+VALUES (
+    {{ this.params.code }}, 
+    'XUAT_KHO', -- Sửa từ 'EXPORT' thành 'XUAT_KHO' cho khớp với bảng hiển thị
+    {{ this.params.qty }}, 
+    {{ this.params.emp }}, 
+    {{ this.params.urg }}, 
+    {{ this.params.mach }}, 
+    {{ this.params.note }}, 
+    NOW()
+);
