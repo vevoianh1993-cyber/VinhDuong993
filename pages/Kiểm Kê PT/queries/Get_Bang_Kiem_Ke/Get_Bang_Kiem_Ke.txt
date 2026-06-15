@@ -1,32 +1,39 @@
 SELECT 
     row_number() OVER (ORDER BY p.part_code) AS "STT 序号",
-    p.part_code AS "Mã vật liệu 物料编码",
+    p.part_code AS "Mã vật liệu 物料编号",
     p.name_vn AS "Tên Vật Liệu 物料名称",
     p.specifications AS "Quy Cách 规格",
     p.unit AS "Đơn Vị 单位",
     p.storage_area AS "Khu vực 存放区域",
 
-    -- Số dư đầu tháng
-    COALESCE((SELECT SUM(CASE WHEN trans_type = 'NHAP_KHO' THEN quantity ELSE -quantity END)
-              FROM transactions WHERE sn_code = p.part_code AND trans_time < date_trunc('month', NOW())), 0) AS "Số Dư Tháng Trước 上月结存",
+    -- Số dư đầu tháng (Transactions Net - Scraps Net)
+    (
+        COALESCE((SELECT SUM(CASE WHEN trans_type = 'NHAP_KHO' THEN quantity ELSE -quantity END)
+                  FROM transactions WHERE sn_code = p.part_code AND trans_time < date_trunc('month', NOW())), 0)
+        -
+        COALESCE((SELECT SUM(quantity) FROM scrap_transactions 
+                  WHERE item_code = p.part_code AND trans_time < date_trunc('month', NOW())), 0)
+    ) AS "Số Dư Tháng Trước 上月结存",
 
     -- Nhập tháng này
-    COALESCE((SELECT SUM(quantity) FROM transactions WHERE sn_code = p.part_code AND trans_type = 'NHAP_KHO' AND trans_time >= date_trunc('month', NOW())), 0) AS "Nhập tháng này 本月入库",
+    COALESCE((SELECT SUM(quantity) FROM transactions 
+              WHERE sn_code = p.part_code AND trans_type = 'NHAP_KHO' AND trans_time >= date_trunc('month', NOW())), 0) AS "Nhập tháng này 本月入库",
 
-    -- Xuất tháng này
-    COALESCE((SELECT SUM(quantity) FROM transactions WHERE sn_code = p.part_code AND trans_type = 'XUAT_KHO' AND trans_time >= date_trunc('month', NOW())), 0) AS "Xuất tháng này 本月出库",
-
-    -- Số dư cuối tháng
+    -- Xuất tháng này (Gộp Xuất thường + Xuất phế)
     (
-        COALESCE((SELECT SUM(CASE WHEN trans_type = 'NHAP_KHO' THEN quantity ELSE -quantity END) FROM transactions WHERE sn_code = p.part_code AND trans_time < date_trunc('month', NOW())), 0)
+        COALESCE((SELECT SUM(quantity) FROM transactions 
+                  WHERE sn_code = p.part_code AND trans_type = 'XUAT_KHO' AND trans_time >= date_trunc('month', NOW())), 0)
         +
-        COALESCE((SELECT SUM(quantity) FROM transactions WHERE sn_code = p.part_code AND trans_type = 'NHAP_KHO' AND trans_time >= date_trunc('month', NOW())), 0)
-        -
-        COALESCE((SELECT SUM(quantity) FROM transactions WHERE sn_code = p.part_code AND trans_type = 'XUAT_KHO' AND trans_time >= date_trunc('month', NOW())), 0)
-    ) AS "Số Dư Cuối Tháng 本月结存",
+        COALESCE((SELECT SUM(quantity) FROM scrap_transactions 
+                  WHERE item_code = p.part_code AND trans_time >= date_trunc('month', NOW())), 0)
+    ) AS "Xuất tháng này 本月出库",
 
-    -- Cột nhập thủ công
+    -- Số dư cuối tháng (Lấy trực tiếp từ Database để đảm bảo chính xác nhất)
+    p.current_qty AS "Số Dư Cuối Tháng 本月结存",
+
+    -- Kiểm kê
     COALESCE(p.actual_check_qty, 0) AS "Kiểm Kê Thực Tế 本月实际盘点",
+    (COALESCE(p.actual_check_qty, 0) - p.current_qty) AS "Chênh Lệch Kiểm Kê 盘点差异",
     COALESCE(p.diff_reason, '') AS "Nguyên Nhân 差异原因",
     COALESCE(p.check_notes, '') AS "Ghi Chú 备注"
 

@@ -1,0 +1,8 @@
+SELECT 
+    TO_CHAR(trans_time::timestamp, 'DD/MM') AS "day",
+    SUM(CASE WHEN trans_type LIKE '%NHAP%' OR trans_type LIKE '%IMPORT%' THEN quantity ELSE 0 END) AS "nhap",
+    SUM(CASE WHEN trans_type IN ('EXPORT', 'XUAT_KHO') THEN quantity ELSE 0 END) AS "xuat",
+    SUM(CASE WHEN trans_type = 'XUAT_PHE' THEN quantity ELSE 0 END) AS "phe"
+FROM tools_transactions
+WHERE trans_time::timestamp >= date_trunc('month', CURRENT_DATE)
+GROUP BY 1 ORDER BY 1 ASC;

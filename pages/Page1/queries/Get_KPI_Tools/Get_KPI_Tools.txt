@@ -1,0 +1,13 @@
+WITH stats AS (
+    SELECT 
+        (SELECT COALESCE(SUM(current_qty), 0) FROM tools_catalog) AS ton_kho,
+        (SELECT COALESCE(SUM(quantity), 0) FROM tools_transactions WHERE trans_type IN ('EXPORT', 'XUAT_KHO') AND trans_time::timestamp >= date_trunc('month', CURRENT_DATE)) AS xuat_dung,
+        (SELECT COALESCE(SUM(quantity), 0) FROM tools_transactions WHERE trans_type = 'XUAT_PHE' AND trans_time::timestamp >= date_trunc('month', CURRENT_DATE)) AS bao_phe
+)
+SELECT 
+    ton_kho, xuat_dung, bao_phe,
+    (ton_kho + xuat_dung + bao_phe) AS tong_tai_san,
+    ROUND((xuat_dung::numeric / NULLIF(ton_kho + xuat_dung + bao_phe, 0)) * 100, 1) AS ty_le_su_dung,
+    ROUND((bao_phe::numeric / NULLIF(ton_kho + xuat_dung + bao_phe, 0)) * 100, 1) AS ty_le_bao_phe,
+    ROUND((ton_kho::numeric / NULLIF(ton_kho + xuat_dung + bao_phe, 0)) * 100, 1) AS ty_le_ton_kho
+FROM stats;
