@@ -1,6 +1,6 @@
 UPDATE parts_catalog 
 SET 
-    actual_check_qty = {{KiemKe.updatedRow["Kiểm Kê Thực Tế 本月实际盘点"]}},
-    diff_reason = '{{KiemKe.updatedRow["Nguyên Nhân 差异原因"]}}',
-    check_notes = '{{KiemKe.updatedRow["Ghi Chú 备注"]}}'
-WHERE part_code = '{{KiemKe.updatedRow["Mã vật liệu 物料编码"]}}';
+    actual_check_qty = {{this.params.qty}},
+    diff_reason = {{this.params.reason}},
+    check_notes = {{this.params.notes}}
+WHERE part_code = {{this.params.code}};

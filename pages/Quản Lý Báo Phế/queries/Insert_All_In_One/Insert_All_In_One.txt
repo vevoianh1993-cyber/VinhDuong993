@@ -1,7 +1,4 @@
--- Dòng 1: Thêm vào danh sách phế
-INSERT INTO scrap_management (tool_code, quantity, requester, status, created_at)
-VALUES ({{inp_BP_Ma.text}}, {{inp_BP_SoLuong.text}}, {{inp_BP_NguoiDat.text}}, 'Pending', NOW());
-
--- Dòng 2: Thêm vào nhật ký xuất
-INSERT INTO tools_transactions (tool_code, quantity, trans_type, emp_code, created_at)
-VALUES ({{inp_BP_Ma.text}}, {{inp_BP_SoLuong.text}}, 'XUAT_PHE', {{inp_BP_NguoiDat.text}}, NOW());
+INSERT INTO scrap_transactions 
+(item_code, item_name, quantity, trans_type, emp_code, notes, trans_time)
+VALUES 
+({{this.params.code}}, {{this.params.name}}, {{this.params.qty}}, {{this.params.trang_thai}}, {{this.params.emp}}, {{this.params.ghi_chu}}, NOW());

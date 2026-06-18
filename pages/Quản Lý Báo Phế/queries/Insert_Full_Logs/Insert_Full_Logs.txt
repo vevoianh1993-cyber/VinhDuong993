@@ -1,19 +1,19 @@
--- 1. Ghi vào Danh sách phế (Giữ nguyên)
+-- Dùng phương pháp kiểm tra: Cập nhật cộng dồn nếu đã có (và đang Pending)
+WITH updated AS (
+    UPDATE scrap_management 
+    SET quantity = quantity + {{this.params.qty}}
+    WHERE tool_code = {{this.params.code}} 
+      AND status = 'Pending'
+    RETURNING id
+)
+-- Nếu không có dòng nào được cộng dồn (tức là mã mới), thì mới Thêm mới
 INSERT INTO scrap_management (
     workshop, tool_code, tool_name, unit, quantity, requester, 
     material_type, usage_location, scrap_reason, approver, 
     status, created_at, scrap_status, notes
-) VALUES (
+) 
+SELECT 
     {{this.params.xuong}}, {{this.params.code}}, {{this.params.name}}, {{this.params.unit}}, {{this.params.qty}}, {{this.params.emp}}, 
     {{this.params.loai}}, {{this.params.vitri}}, {{this.params.nguyennhan}}, {{this.params.nguoiduyet}}, 
     'Pending', NOW(), {{this.params.trangthai}}, {{this.params.ghichu}}
-);
-
--- 2. Ghi vào Lịch sử kho tổng (ĐÃ XÓA created_at)
-INSERT INTO transactions (part_code, quantity, trans_type, emp_code)
-VALUES (
-    {{this.params.code}}, 
-    {{this.params.qty}}, 
-    'XUAT_PHE', 
-    {{this.params.emp}}
-);
+WHERE NOT EXISTS (SELECT 1 FROM updated);

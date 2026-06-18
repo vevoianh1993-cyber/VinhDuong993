@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "UPDATE parts_catalog \nSET \n    actual_check_qty = {{KiemKe.updatedRow[\"Kiểm Kê Thực Tế 本月实际盘点\"]}},\n    diff_reason = '{{KiemKe.updatedRow[\"Nguyên Nhân 差异原因\"]}}',\n    check_notes = '{{KiemKe.updatedRow[\"Ghi Chú 备注\"]}}'\nWHERE part_code = '{{KiemKe.updatedRow[\"Mã vật liệu 物料编码\"]}}';",
+      "body": "UPDATE parts_catalog \nSET \n    actual_check_qty = {{this.params.qty}},\n    diff_reason = {{this.params.reason}},\n    check_notes = {{this.params.notes}}\nWHERE part_code = {{this.params.code}};",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

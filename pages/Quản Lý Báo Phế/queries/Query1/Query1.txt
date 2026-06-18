@@ -1,3 +1,1 @@
-SELECT tool_code, specifications, current_qty 
-FROM tools_catalog 
-WHERE tool_code = '03.06.0808';
+TRUNCATE TABLE scrap_transactions;

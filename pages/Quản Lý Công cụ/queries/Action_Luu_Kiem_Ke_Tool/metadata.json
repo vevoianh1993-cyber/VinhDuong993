@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "UPDATE tools_catalog \nSET \n    actual_qty = {{ Kiem_Ke_Cong_Cu.updatedRow[\"Kiểm Kê Thực Tế / 本月实际盘点\"] || 0 }}, -- Chỉ cập nhật cột kiểm kê\n    diff_reason = '{{ Kiem_Ke_Cong_Cu.updatedRow[\"Nguyên Nhân / 差异原因\"] }}',\n    check_notes = '{{ Kiem_Ke_Cong_Cu.updatedRow[\"Ghi Chú / 备注\"] }}'\nWHERE tool_code = '{{ Kiem_Ke_Cong_Cu.updatedRow[\"Mã vật liệu / 物料编码\"] }}';",
+      "body": "UPDATE tools_catalog\nSET actual_qty = {{this.params.qty}},\n    audit_reason = {{this.params.reason}},\n    audit_notes = {{this.params.notes}}\nWHERE tool_code = {{this.params.code}};",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

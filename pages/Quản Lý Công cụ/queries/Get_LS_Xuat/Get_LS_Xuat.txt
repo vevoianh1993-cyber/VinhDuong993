@@ -1,32 +1,47 @@
 SELECT 
     t.machine_id AS "Loại máy dùng 使用设备",
     t.tool_code AS "Mã vật liệu 物料编号",
-    c.specifications AS "Tên vật liệu 物料名称",
-    c.specifications AS "Quy cách 规格型号",
+    
+    -- Cột Tên: Lấy tên đã lưu hoặc từ danh mục
+    COALESCE(t.saved_name, NULLIF(c.specifications, 'Auto-added'), t.tool_code) AS "Tên vật liệu 物料名称",
+    
+    -- Cột Quy cách: Để trống hoàn toàn theo đúng thực tế kho của bạn
+    '' AS "Quy cách 规格型号",
+    
     t.trans_time AS "Thời gian 时间",
     t.emp_code AS "Mã nhân viên 员工代码",
     t.quantity AS "Số lượng xuất 出库数量",
     t.urgency_level AS "Mức độ khẩn cấp 紧急程度",
     t.notes AS "Ghi chú 备注"
 FROM (
-    -- Lấy xuất kho thường
-    SELECT machine_id, tool_code, trans_time, emp_code, quantity, urgency_level, notes
+    -- 1. Lấy xuất kho thường
+    SELECT 
+        machine_id, 
+        tool_code, 
+        NULL AS saved_name, 
+        trans_time, 
+        emp_code, 
+        quantity, 
+        urgency_level, 
+        notes
     FROM tools_transactions 
     WHERE trans_type = 'EXPORT'
     
     UNION ALL
     
-    -- Lấy xuất báo phế
+    -- 2. Lấy xuất báo phế
     SELECT 
         'Báo Phế' AS machine_id, 
-        item_code AS tool_code, 
-        trans_time, 
-        emp_code, 
-        quantity, 
+        s.item_code AS tool_code, 
+        s.item_name AS saved_name, 
+        s.trans_time, 
+        s.emp_code, 
+        s.quantity, 
         'Bình thường' AS urgency_level, 
         'Xuất báo phế' AS notes
-    FROM scrap_transactions 
-    WHERE trans_type IN ('XUAT_BAO_PHE', 'NHAP_PHE')
+    FROM scrap_transactions s
+    INNER JOIN tools_catalog tc ON s.item_code = tc.tool_code 
+    WHERE s.trans_type IN ('XUAT_BAO_PHE', 'NHAP_PHE')
 ) AS t
 LEFT JOIN tools_catalog c ON t.tool_code = c.tool_code
 ORDER BY t.trans_time DESC;

@@ -4,7 +4,7 @@
   "borderColor": "#E0DEDE",
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "borderWidth": "1",
-  "bottomRow": 67,
+  "bottomRow": 65,
   "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
   "cachedTableData": {},
   "canFreezeColumn": true,
@@ -33,6 +33,7 @@
   },
   "columnOrder": [
     "xn__STT__th1g547c",
+    "xn__M_vt_liu__l2a2005fbjax712duu1byf0bqn4b",
     "xn__Tn_Vt_Liu__m7a5452g1ja1796de94bo31bb00a",
     "xn__Quy_Cch__dza7075x2cxc",
     "xn__n_V__uua48fk70mpd3emuh",
@@ -42,14 +43,12 @@
     "xn__Xut_thng_ny__79aj9045ixw5hp0tbn25asta",
     "xn__S_D_Cui_Thng__deb112a302pga2300zhotbtuau780b",
     "xn__Kim_K_Thc_T__seb8308hoba35c8563fz6pbstag24mg40a3q8l",
-    "customColumn1",
+    "xn__Chnh_Lch_Kim_K__snbm8468k9ba2331qvzess2jzo3a",
     "xn__Nguyn_Nhn__b5a5gq678khsja7t0ag4d",
     "xn__Ghi_Ch__c2a4893r9sqb",
-    "xn__M_vt_liu__l2a2005fbjax712duu1byf0bqn4b",
-    "xn__Chnh_Lch_Kim_K__snbm8468k9ba2331qvzess2jzo3a",
     "EditActions1"
   ],
-  "columnUpdatedAt": 1781257678274,
+  "columnUpdatedAt": 1781762005076,
   "columnWidthMap": {
     "xn__STT__th1g547c": 72
   },
@@ -111,15 +110,6 @@
       "key": "primaryColumns.xn__Ghi_Ch__c2a4893r9sqb.computedValue"
     },
     {
-      "key": "primaryColumns.customColumn1.computedValue"
-    },
-    {
-      "key": "primaryColumns.customColumn1.cellBackground"
-    },
-    {
-      "key": "primaryColumns.customColumn1.textColor"
-    },
-    {
       "key": "primaryColumns.EditActions1.saveButtonColor"
     },
     {
@@ -144,12 +134,6 @@
   "dynamicPropertyPathList": [
     {
       "key": "tableData"
-    },
-    {
-      "key": "primaryColumns.customColumn1.cellBackground"
-    },
-    {
-      "key": "primaryColumns.customColumn1.textColor"
     },
     {
       "key": "primaryColumns.xn__Kim_K_Thc_T__seb8308hoba35c8563fz6pbstag24mg40a3q8l.onSubmit"
@@ -199,8 +183,8 @@
   "mobileRightColumn": 34,
   "mobileTopRow": 1,
   "needsErrorInfo": false,
-  "originalBottomRow": 67,
-  "originalTopRow": 8,
+  "originalBottomRow": 65,
+  "originalTopRow": 7,
   "parentId": "0",
   "parentRowSpace": 10,
   "primaryColumnId": "xn__STT__th1g547c",
@@ -243,41 +227,6 @@
       "sticky": "right",
       "thousandSeparator": true,
       "validation": {},
-      "width": 150
-    },
-    "customColumn1": {
-      "alias": "Chênh Lệch盘点差异",
-      "allowCellWrapping": false,
-      "allowSameOptionsInNewRow": true,
-      "buttonStyle": "rgb(3, 179, 101)",
-      "cellBackground": "{{(() => { const tableData = KiemKe.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] === 0 ? \"#dcfce7\" : // Xanh lá nhạt\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] < 0 ? \"#fee2e2\" : // Đỏ nhạt\n  \"#ffedd5\" // Cam nhạt\n)) : \n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] === 0 ? \"#dcfce7\" : // Xanh lá nhạt\n  currentRow[\"Chênh Lệch Kiểm Kê / 盘点差异\"] < 0 ? \"#fee2e2\" : // Đỏ nhạt\n  \"#ffedd5\" // Cam nhạt\n })()}}",
-      "columnType": "text",
-      "computedValue": "{{(() => { const tableData = KiemKe.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => ( currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"] - currentRow[\"Số Dư Cuối Tháng 本月结存\"] )) :  currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"] - currentRow[\"Số Dư Cuối Tháng 本月结存\"]  })()}}",
-      "currencyCode": "USD",
-      "decimals": 0,
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "customColumn1",
-      "index": 10,
-      "isCellEditable": false,
-      "isCellVisible": true,
-      "isDerived": true,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": false,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "Chênh Lệch盘点差异",
-      "labelColor": "#FFFFFF",
-      "notation": "standard",
-      "originalId": "customColumn1",
-      "sticky": "",
-      "textColor": "{{(() => { const tableData = KiemKe.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  (currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"] === 0) ? \"#FFFFFF\" : \n  (currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"] - currentRow[\"Số Dư Cuối Tháng 本月结存\"] === 0) ? \"#FFFFFF\" : \n  \"#000000\"\n)) : \n  (currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"] === 0) ? \"#FFFFFF\" : \n  (currentRow[\"Kiểm Kê Thực Tế 本月实际盘点\"] - currentRow[\"Số Dư Cuối Tháng 本月结存\"] === 0) ? \"#FFFFFF\" : \n  \"#000000\"\n })()}}",
-      "textSize": "0.875rem",
-      "thousandSeparator": true,
-      "validation": {},
-      "verticalAlignment": "CENTER",
       "width": 150
     },
     "xn__Chnh_Lch_Kim_K__snbm8468k9ba2331qvzess2jzo3a": {
@@ -339,7 +288,7 @@
       "isVisible": true,
       "label": "Ghi Chú 备注",
       "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    // 1. Lưu dữ liệu (Anh đã làm thành công bước này)\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. TỰ ĐỘNG LÀM MỚI BẢNG (Đây là bước làm ẩn nút Save)\n    await Get_Bang_Kiem_Ke.run();\n    \n    showAlert(\"✅ Đã lưu và làm mới dữ liệu!\", \"success\");\n  })()\n}}",
+      "onSubmit": "(async () => {\n  try {\n    const row = KiemKe.triggeredRow; \n    \n    if (!row) {\n      showAlert(\"⚠️ Không tìm thấy dữ liệu dòng!\", \"warning\");\n      return;\n    }\n\n    // 1. Lưu xuống DB\n    await Action_Luu_Kiem_Ke.run({\n        code: row[\"Mã vật liệu 物料编号\"],\n        qty: Number(row[\"Kiểm Kê Thực Tế 本月实际盘点\"] ?? 0),\n        reason: row[\"Nguyên Nhân 差异原因\"] ?? '',\n        notes: row[\"Ghi Chú 备注\"] ?? ''\n    });\n\n    // 2. Làm mới dữ liệu\n    await Get_Bang_Kiem_Ke.run();\n\n    // 3. DÒNG NÀY SẼ LÀM MẤT NÚT LƯU (TICK/CROSS)\n    // Nó ép bảng thoát khỏi chế độ \"Đang chỉnh sửa\"\n    resetWidget('KiemKe', true);\n\n    showAlert(\"✅ Đã lưu thành công!\", \"success\");\n\n  } catch (err) {\n    showAlert(\"❌ Lỗi: \" + err.message, \"error\");\n  }\n})()",
       "originalId": "Ghi Chú 备注",
       "sticky": "",
       "textColor": "",
@@ -408,7 +357,7 @@
       "isVisible": true,
       "label": "Kiểm Kê Thực Tế 本月实际盘点",
       "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    // 1. Lưu dữ liệu (Anh đã làm thành công bước này)\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. TỰ ĐỘNG LÀM MỚI BẢNG (Đây là bước làm ẩn nút Save)\n    await Get_Bang_Kiem_Ke.run();\n    \n    showAlert(\"✅ Đã lưu và làm mới dữ liệu!\", \"success\");\n  })()\n}}",
+      "onSubmit": "(async () => {\n  try {\n    const row = KiemKe.triggeredRow; \n    \n    if (!row) {\n      showAlert(\"⚠️ Không tìm thấy dữ liệu dòng!\", \"warning\");\n      return;\n    }\n\n    // 1. Lưu xuống DB\n    await Action_Luu_Kiem_Ke.run({\n        code: row[\"Mã vật liệu 物料编号\"],\n        qty: Number(row[\"Kiểm Kê Thực Tế 本月实际盘点\"] ?? 0),\n        reason: row[\"Nguyên Nhân 差异原因\"] ?? '',\n        notes: row[\"Ghi Chú 备注\"] ?? ''\n    });\n\n    // 2. Làm mới dữ liệu\n    await Get_Bang_Kiem_Ke.run();\n\n    // 3. DÒNG NÀY SẼ LÀM MẤT NÚT LƯU (TICK/CROSS)\n    // Nó ép bảng thoát khỏi chế độ \"Đang chỉnh sửa\"\n    resetWidget('KiemKe', true);\n\n    showAlert(\"✅ Đã lưu thành công!\", \"success\");\n\n  } catch (err) {\n    showAlert(\"❌ Lỗi: \" + err.message, \"error\");\n  }\n})()",
       "originalId": "Kiểm Kê Thực Tế 本月实际盘点",
       "sticky": "",
       "textColor": "",
@@ -477,7 +426,7 @@
       "isVisible": true,
       "label": "Nguyên Nhân 差异原因",
       "notation": "standard",
-      "onSubmit": "{{\n  (async () => {\n    // 1. Lưu dữ liệu (Anh đã làm thành công bước này)\n    await Action_Luu_Kiem_Ke.run();\n    \n    // 2. TỰ ĐỘNG LÀM MỚI BẢNG (Đây là bước làm ẩn nút Save)\n    await Get_Bang_Kiem_Ke.run();\n    \n    showAlert(\"✅ Đã lưu và làm mới dữ liệu!\", \"success\");\n  })()\n}}",
+      "onSubmit": "(async () => {\n  try {\n    const row = KiemKe.triggeredRow; \n    \n    if (!row) {\n      showAlert(\"⚠️ Không tìm thấy dữ liệu dòng!\", \"warning\");\n      return;\n    }\n\n    // 1. Lưu xuống DB\n    await Action_Luu_Kiem_Ke.run({\n        code: row[\"Mã vật liệu 物料编号\"],\n        qty: Number(row[\"Kiểm Kê Thực Tế 本月实际盘点\"] ?? 0),\n        reason: row[\"Nguyên Nhân 差异原因\"] ?? '',\n        notes: row[\"Ghi Chú 备注\"] ?? ''\n    });\n\n    // 2. Làm mới dữ liệu\n    await Get_Bang_Kiem_Ke.run();\n\n    // 3. DÒNG NÀY SẼ LÀM MẤT NÚT LƯU (TICK/CROSS)\n    // Nó ép bảng thoát khỏi chế độ \"Đang chỉnh sửa\"\n    resetWidget('KiemKe', true);\n\n    showAlert(\"✅ Đã lưu thành công!\", \"success\");\n\n  } catch (err) {\n    showAlert(\"❌ Lỗi: \" + err.message, \"error\");\n  }\n})()",
       "originalId": "Nguyên Nhân 差异原因",
       "sticky": "",
       "textColor": "",
@@ -767,7 +716,7 @@
   "showInlineEditingOptionDropdown": true,
   "tableData": "{{Get_Bang_Kiem_Ke.data}}",
   "textSize": "0.875rem",
-  "topRow": 8,
+  "topRow": 7,
   "totalRecordsCount": 0,
   "type": "TABLE_WIDGET_V2",
   "version": 2,

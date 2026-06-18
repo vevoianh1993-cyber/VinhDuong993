@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "6a2617856c35e1cda1ecf557_3cb6258b-cd77-4a9d-9663-3281a0f4c83c",
-  "id": "Quản Lý Báo Phế_Insert_All_In_One",
+  "gitSyncId": "6a2617856c35e1cda1ecf557_d540e125-96c3-4f82-a5ce-5e9eeeba41a8",
+  "id": "Quản Lý Báo Phế_Action_Delete_Scrap",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO scrap_transactions \n(item_code, item_name, quantity, trans_type, emp_code, notes, trans_time)\nVALUES \n({{this.params.code}}, {{this.params.name}}, {{this.params.qty}}, {{this.params.trang_thai}}, {{this.params.emp}}, {{this.params.ghi_chu}}, NOW());",
+      "body": "DELETE FROM scrap_management;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,12 +22,8 @@
       "name": "JASB",
       "pluginId": "postgres-plugin"
     },
-    "dynamicBindingPathList": [
-      {
-        "key": "body"
-      }
-    ],
-    "name": "Insert_All_In_One",
+    "dynamicBindingPathList": [],
+    "name": "Action_Delete_Scrap",
     "pageId": "Quản Lý Báo Phế",
     "runBehaviour": "MANUAL",
     "userSetOnLoad": false

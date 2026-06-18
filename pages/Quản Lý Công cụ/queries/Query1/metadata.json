@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT DISTINCT trans_type, COUNT(*) \nFROM tools_transactions \nWHERE EXTRACT(MONTH FROM trans_time::timestamp) = 6 \nGROUP BY trans_type;",
+      "body": "UPDATE tools_catalog \nSET actual_qty = 0 \nWHERE tool_code = '03.06.0808'\nRETURNING actual_qty;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

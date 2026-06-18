@@ -32,7 +32,6 @@
     }
   },
   "columnOrder": [
-    "customColumn1",
     "xn__STT__th1g547c",
     "xn__M_vt_liu__l2a2005fbjax712duu1byf0bqn4b",
     "xn__Tn_vt_liu__m7a5452g1ja1796de94bo31bb00a",
@@ -44,9 +43,12 @@
     "xn__V_tr__2sa2364ctd3emjwbqz2cbt5a",
     "xn__Thao_tc_cui_cng__kmb35bq259bhnviowc241qkkya"
   ],
-  "columnUpdatedAt": 1781253605662,
+  "columnUpdatedAt": 1781761681383,
   "columnWidthMap": {
-    "customColumn1": 73
+    "customColumn1": 73,
+    "xn__M_vt_liu__l2a2005fbjax712duu1byf0bqn4b": 131,
+    "xn__STT__th1g547c": 60,
+    "xn__n_v__uua48fk70mpd3emuh": 110
   },
   "customIsLoading": false,
   "customIsLoadingValue": "",
@@ -68,9 +70,6 @@
     },
     {
       "key": "tableData"
-    },
-    {
-      "key": "primaryColumns.customColumn1.computedValue"
     },
     {
       "key": "primaryColumns.xn__STT__th1g547c.computedValue"
@@ -104,6 +103,9 @@
     },
     {
       "key": "primaryColumns.xn__Tng_SL_tn_d__iid6355hwa7489qnwqay83a044lis4bfe1a.cellBackground"
+    },
+    {
+      "key": "primaryColumns.xn__Tng_SL_tn_d__iid6355hwa7489qnwqay83a044lis4bfe1a.textColor"
     }
   ],
   "dynamicPropertyPathList": [
@@ -112,6 +114,9 @@
     },
     {
       "key": "primaryColumns.xn__Tng_SL_tn_d__iid6355hwa7489qnwqay83a044lis4bfe1a.cellBackground"
+    },
+    {
+      "key": "primaryColumns.xn__Tng_SL_tn_d__iid6355hwa7489qnwqay83a044lis4bfe1a.textColor"
     }
   ],
   "dynamicTriggerPathList": [],
@@ -142,39 +147,6 @@
   "parentId": "0",
   "parentRowSpace": 10,
   "primaryColumns": {
-    "customColumn1": {
-      "alias": "STT",
-      "allowCellWrapping": false,
-      "allowSameOptionsInNewRow": true,
-      "buttonStyle": "rgb(3, 179, 101)",
-      "columnType": "text",
-      "computedValue": "{{(() => { const tableData = Ton_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (currentIndex + 1)) : currentIndex + 1 })()}}",
-      "currencyCode": "USD",
-      "decimals": 0,
-      "enableFilter": true,
-      "enableSort": true,
-      "horizontalAlignment": "LEFT",
-      "id": "customColumn1",
-      "index": 9,
-      "isCellEditable": false,
-      "isCellVisible": true,
-      "isDerived": true,
-      "isDisabled": false,
-      "isDiscardVisible": true,
-      "isEditable": false,
-      "isSaveVisible": true,
-      "isVisible": true,
-      "label": "STT",
-      "labelColor": "#FFFFFF",
-      "notation": "standard",
-      "originalId": "customColumn1",
-      "sticky": "",
-      "textSize": "0.875rem",
-      "thousandSeparator": true,
-      "validation": {},
-      "verticalAlignment": "CENTER",
-      "width": 150
-    },
     "xn__M_vt_liu__l2a2005fbjax712duu1byf0bqn4b": {
       "alias": "Mã vật liệu 物料编号",
       "allowCellWrapping": false,
@@ -372,7 +344,7 @@
       "notation": "standard",
       "originalId": "Tổng SL tồn dư 结存余量合计",
       "sticky": "",
-      "textColor": "",
+      "textColor": "{{(() => { const tableData = Ton_Cong_Cu.processedTableData || []; return tableData.length > 0 ? tableData.map((currentRow, currentIndex) => (\n  (currentRow[\"Tổng SL tồn dư 结存余量合计\"] <= 0) ? \"#FFFFFF\" : \n  (currentRow[\"Tổng SL nhập 入库数量  合计\"] > 0 && ((new Date() - new Date(currentRow[\"Thao tác cuối cùng 上次交易\"])) / (1000 * 60 * 60) < 24)) ? \"#FFFFFF\" : \n  \"black\"\n)) : \n  (currentRow[\"Tổng SL tồn dư 结存余量合计\"] <= 0) ? \"#FFFFFF\" : \n  (currentRow[\"Tổng SL nhập 入库数量  合计\"] > 0 && ((new Date() - new Date(currentRow[\"Thao tác cuối cùng 上次交易\"])) / (1000 * 60 * 60) < 24)) ? \"#FFFFFF\" : \n  \"black\"\n })()}}",
       "textSize": "0.875rem",
       "thousandSeparator": true,
       "validation": {},

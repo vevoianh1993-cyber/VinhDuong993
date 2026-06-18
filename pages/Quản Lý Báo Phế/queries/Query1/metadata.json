@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT tool_code, specifications, current_qty \nFROM tools_catalog \nWHERE tool_code = '03.06.0808';",
+      "body": "TRUNCATE TABLE scrap_transactions;",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

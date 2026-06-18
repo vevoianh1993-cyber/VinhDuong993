@@ -1,4 +1,4 @@
-SELECT DISTINCT trans_type, COUNT(*) 
-FROM tools_transactions 
-WHERE EXTRACT(MONTH FROM trans_time::timestamp) = 6 
-GROUP BY trans_type;
+UPDATE tools_catalog 
+SET actual_qty = 0 
+WHERE tool_code = '03.06.0808'
+RETURNING actual_qty;

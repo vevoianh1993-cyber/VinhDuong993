@@ -1,21 +1,26 @@
 SELECT 
+    -- 1. STT (Tự động đánh số thứ tự)
+    ROW_NUMBER() OVER(ORDER BY c.tool_code) AS "STT",
+    
+    -- 2. Thông tin cơ bản
     c.tool_code AS "Mã vật liệu / 物料编码",
     c.specifications AS "Tên Vật Liệu / 物料名称",
+    '' AS "Quy Cách / 规格", -- Để trống theo như cấu hình kho của bạn
     c.unit AS "Đơn Vị / 单位",
     c.storage_area AS "Khu vực / 存放区域",
     
-    -- Số dư đầu kỳ (Tính trước tháng 6)
+    -- 3. Số dư đầu kỳ (Tính trước tháng 6)
     (
         COALESCE((
             SELECT SUM(CASE WHEN tt.trans_type IN ('IMPORT', 'NHAP_PHE') THEN tt.quantity ELSE 0 END) -
-                       SUM(CASE WHEN tt.trans_type IN ('EXPORT', 'XUAT_KHO', 'XUAT_PHE') THEN tt.quantity ELSE 0 END)
+                   SUM(CASE WHEN tt.trans_type IN ('EXPORT', 'XUAT_KHO', 'XUAT_PHE') THEN tt.quantity ELSE 0 END)
             FROM tools_transactions tt 
             WHERE tt.tool_code = c.tool_code 
             AND tt.trans_time::timestamp < '2026-06-01'
         ), 0)
     ) AS "Số Dư Tháng Trước / 上月结存",
     
-    -- Nhập tháng này (Bao gồm IMPORT và NHAP_PHE)
+    -- 4. Nhập tháng này
     COALESCE((
         SELECT SUM(tt.quantity) FROM tools_transactions tt 
         WHERE tt.tool_code = c.tool_code 
@@ -23,15 +28,30 @@ SELECT
         AND tt.trans_time::timestamp >= '2026-06-01'
     ), 0) AS "Nhập tháng này / 本月入库",
     
-    -- Xuất tháng này (Bao gồm EXPORT, XUAT_KHO, XUAT_PHE)
+    -- 5. Xuất tháng này
     COALESCE((
         SELECT SUM(tt.quantity) FROM tools_transactions tt 
         WHERE tt.tool_code = c.tool_code 
         AND tt.trans_type IN ('EXPORT', 'XUAT_KHO', 'XUAT_PHE')
         AND tt.trans_time::timestamp >= '2026-06-01'
     ), 0) AS "Xuất tháng này / 本月出库",
+
+    -- 6. Trả kho tháng này (Nếu hệ thống có mã giao dịch trả kho, ví dụ 'TRA_KHO', thì cấu hình ở đây. Tạm thời để 0)
+    COALESCE((
+        SELECT SUM(tt.quantity) FROM tools_transactions tt 
+        WHERE tt.tool_code = c.tool_code 
+        AND tt.trans_type = 'TRA_KHO' 
+        AND tt.trans_time::timestamp >= '2026-06-01'
+    ), 0) AS "Trả kho tháng này / 本月退回仓库",
     
-    c.current_qty AS "Số Dư Cuối Tháng / 本月结存"
+    -- 7. Số dư cuối kỳ
+    c.current_qty AS "Số Dư Cuối Tháng / 本月结存",
+    
+    -- 8. CÁC CỘT KIỂM KÊ THỰC TẾ (Đã sửa để gọi dữ liệu đã lưu từ Database lên)
+    c.actual_qty AS "Kiểm Kê Thực Tế / 本月实际盘点",
+    '' AS "Chênh Lệch Kiểm Kê / 盘点差异", -- Vẫn để trống để Appsmith tự động trừ
+    c.audit_reason AS "Nguyên Nhân Chênh Lệch / 差异原因",
+    c.audit_notes AS "Ghi Chú / 备注"
 
 FROM tools_catalog c
 ORDER BY c.tool_code;
